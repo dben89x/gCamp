@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -55,11 +56,6 @@ h1 {
 #nav {
   background: image-url("ribbons.jpg");
   background-size:100% 100%;
-}
-
-#navText{
-  font-size: 30px;
-  color: white;
 }
 
 #jumbo {

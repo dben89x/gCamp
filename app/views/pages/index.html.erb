@@ -15,7 +15,7 @@
 <div class="container">
 
   <!--images row-->
-  <div class= "row" id= "imgrow">
+  <div class="row" id="imgrow">
 
     <div class="col-md-4 img"> <%= image_tag "tasks.png", class: "img-responsive"%></div>
     <div class="col-md-4 img"> <%= image_tag "documents.jpg", class: "img-responsive" %></div>
@@ -35,7 +35,7 @@
 
     <div class="col-md-4">
       <div class="panel panel-default">
-        <div class = "panel-heading">Documents</div>
+        <div class="panel-heading">Documents</div>
           <ul>
             <li> Upload</li>
             <li> Comment</li>
@@ -55,8 +55,16 @@
     </div>
   </div>
 
-  <div class="container" style= color:white>
-  <p>"If you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid." ― Albert Einstein</p>
-  <p>“Be yourself; everyone else is already taken.” ― Oscar Wilde</p>
-  <p>“Don't walk behind me; I may not lead. Don't walk in front of me; I may not follow. Just walk beside me and be my friend.” ― Albert Camus</p>
+  <% quotes = ['"If you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid." ― Albert Einstein',
+              '“Be yourself; everyone else is already taken.” ― Oscar Wilde',
+              '"Don\'t walk behind me; I may not lead. Don\'t walk in front of me; I may not follow. Just walk beside me and be my friend.” ― Albert Camus']
+              %>
+
+  <div class="container" style="color:white">
+
+    <% quotes.each do |quote|%>
+      <p><%=quote%></p>
+    <%end%>
+  </div>
+</div>
 </div>
