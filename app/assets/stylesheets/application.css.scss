@@ -53,22 +53,14 @@ h1 {
   background-color:#FFA319 !important;
 }
 
-#nav {
+.navbar-fixed-top {
   background: image-url("ribbons.jpg");
   background-size:100% 100%;
 }
 
-#jumbo {
+.jumbotron {
   margin-top:100px;
   border-style: solid;
   background-color:black;
   border-width: 1px;
-}
-
-#aboutpage {
-  margin-left:50px;
-}
-
-#termspage {
-  margin-left:50px;
 }
