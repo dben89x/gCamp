@@ -58,7 +58,8 @@
     <div class="container" style="color:white">
 
       <% @quotes.each do |quote|%>
-        <p><%=quote%></p>
+        <p><%=quote.text%></p>
+        <p><%=quote.author%></p>
       <%end%>
     </div>
   </div>
