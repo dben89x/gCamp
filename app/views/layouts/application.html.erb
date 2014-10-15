@@ -12,19 +12,22 @@
     <!--navbar-->
     <div class="navbar-fixed-top">
       <div class="navbar-header">
-        <p class="navbar-brand"> <%=link_to "gCamp", main_path%> </p>
+        <div style = "margin-left:110px">
+          <p class="navbar-brand"> <%=link_to "gCamp", main_path%> </p>
+        </div>
       </div>
       <div class="navbar-collapse collapse"></div>
     </div>
 
-    <%= yield %>
-
-  <footer>
-    <hr>
-    <%= link_to "About", about_path %>
-    <%= link_to "Terms", terms_path %>
-    <%= link_to "FAQs", faq_path %>
-  </footer>
+  <%= yield %>
+  <div style = "margin-left:110px">
+    <footer>
+      <hr>
+      <%= link_to "About", about_path %>
+      <%= link_to "Terms", terms_path %>
+      <%= link_to "FAQs", faq_path %>
+    </footer>
+  </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
