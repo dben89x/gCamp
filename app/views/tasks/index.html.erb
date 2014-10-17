@@ -1,0 +1,25 @@
+<table class = "new-task-table">
+  <thead>
+<th class= "col-md-10">Tasks</th>
+<th class = "btn btn-info pull-right"><%= link_to 'Create Task', new_task_path %></th>
+
+
+    <tr>
+      <th class = "col-md-6">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td class="col-md-6"><%= task.description %></td>
+        <td class = "btn btn-info pull-right"><%= link_to 'Show', task %></td>
+        <td class = "btn btn-info pull-right"><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td class = "btn btn-info pull-right"><%= link_to 'Destroy', task, method: :delete, data:{
+          confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
