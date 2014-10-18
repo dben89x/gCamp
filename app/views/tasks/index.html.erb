@@ -1,25 +1,29 @@
 <div class="container">
-<table class = "table new-task-table">
-  <thead>
-    <tr>
-      <th width="70%">Tasks</th>
-      <th width="30%"><%= link_to 'Create Task', new_task_path, :class => "btn btn-info pull-right" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Description</th>
-    </tr>
-
-    <% @tasks.each do |task| %>
+  <table class = "table new-task-table">
+    <thead>
       <tr>
-        <td width="70%"><%= task.description %></td>
-        <td width="10%"><%= link_to 'Show', task, :class => "btn btn-info"%></td>
-        <td width="10%"><%= link_to 'Edit', edit_task_path(task), :class => "btn btn-info" %></td>
-        <td width="10%"><%= link_to 'Destroy', task, :class => "btn btn-info", method: :delete, data:{
-          confirm: 'Are you sure?' } %></td>
+        <th width="70%">Tasks</th>
+        <th width="30%"><%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Description</th>
+      </tr>
+
+      <% @tasks.each do |task| %>
+        <tr>
+          <td>
+            <%= task.description %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', task, :class => "btn btn-danger pull-right", method: :delete, data:{
+            confirm: 'Are you sure?' } %>
+            <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
+            <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
