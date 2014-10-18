@@ -2,13 +2,13 @@
   <table class = "table new-task-table">
     <thead>
       <tr>
-        <th width="70%">Tasks</th>
+        <th width="70%"><h2>Tasks</h2></th>
         <th width="30%"><%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>Description</th>
+        <th><h4>Description</h4></th>
       </tr>
 
       <% @tasks.each do |task| %>

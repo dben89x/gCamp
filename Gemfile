@@ -2,11 +2,10 @@ source 'https://rubygems.org'
 
 group :production do
   gem "rails_12factor"
+  gem "pg"
 end
 
 gem 'sqlite3', group: :development
-
-gem "pg"
 
 gem 'haml', '~> 4.0.5'
 gem 'bootstrap-sass', '~> 3.2.0'
