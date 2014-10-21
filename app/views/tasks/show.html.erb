@@ -1,9 +1,23 @@
-<p><%= notice %></p>
+<% if notice != nil%>
 
+<p id ="notice" class = "alert alert-success"><%=notice%></p>
+
+<%end%>
 <p>
   <strong>Description:</strong>
   <%= @task.description %>
 </p>
+
+  <strong>Status</strong>
+
+<%if @task.complete%>
+  <div class >
+  <p>Complete</p>
+
+<%else%>
+  <p>Incomplete</p>
+
+<%end%>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

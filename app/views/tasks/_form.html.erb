@@ -1,26 +1,50 @@
-<!-- <form class="form-horizontal" role="form"> -->
-  <%= form_for(@task) do |f| %>
-    <div class = "form-horizontal" role="form">
-      <% if @task.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<%= form_for(@task) do |f| %>
+  <div class = "form-horizontal" role="form">
+    <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-          <ul>
-          <% @task.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+        <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
-      <div class="field">
-        <%= f.label :description, :class=>"col-md-2" %>
-        <div class="txtFld"><%= f.text_field :description, :class=>"col-md-10" %></div>
-        <br><br>
-      </div>
-      <div class="actions btnCrtTask">
-        <%= f.submit 'Create Task', :class=>"btn btn-primary" %>
-      </div>
+<!-- form -->
+  <div class="description_field">
+    <%= f.label :description, :class=>"label col-md-2" %>
+    <%= f.text_field :description, :class=>"col-md-10" %>
+    <br><br>
+  </div>
+
+  <div class ="calendar">
+    <%= f.label :due_date, :class =>"label col-md-2" %>
+    <%= f.date_field :due_date %>
+    <br><br>
+  </div>
+
+  <!-- for new page exclusively -->
+  <%if @new_page%>
+    <div class="actions btn_create_task">
+      <%= f.submit 'Create Task', :class=>"btn btn-primary" %>
     </div>
-  <% end %>
-<!-- </form> -->
+  <%end%>
+
+  <!-- for edit page exclusively -->
+  <%if @edit_page%>
+    <div class="field chk_complete">
+      <%= f.label :complete %>
+      <%= f.check_box :complete, {}, true, false %> <br />
+    </div>
+  <%end%>
+
+    <div class="actions btn_update_task">
+      <%= f.submit 'Update Task', :class=>"btn btn-primary" %>
+    </div>
+    <br>
+
+  </div>
+<% end %>
