@@ -27,7 +27,8 @@
 
     <tbody>
 
-      <% @tasks.each do |task| %>
+    <%sorted_tasks = @tasks.order(:due_date)%>
+      <% sorted_tasks.each do |task| %>
         <tr>
           <td>
             <%= task.description %>
@@ -45,7 +46,7 @@
 
           <td>
             <div class = "due_column">
-              <%= task.due_date %>
+              <%= task.due_date.strftime('%m/%d/%Y') %>
             </div>
           </td>
 
