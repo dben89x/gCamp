@@ -1,22 +1,52 @@
 <div class="container">
   <table class = "table new-task-table">
+    <h1>
+      Tasks
+      <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
+    </h1>
+    <hr>
     <thead>
       <tr>
-        <th><h2>Tasks</h2></th>
-        <th><%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %></th>
+        <th>
+          <h4>Description</h4>
+        </th>
+
+        <th>
+          <h4>Complete</h4>
+        </th>
+
+        <th>
+          <h4>Due Date</h4>
+        </th>
+
+        <th>
+        </th>
+
       </tr>
     </thead>
 
     <tbody>
-      <tr>
-        <td>Description</td>
-        <td><div class = "due_column">Due Date/Status</div></td>
-      </tr>
 
       <% @tasks.each do |task| %>
         <tr>
-          <td width = "40%">
+          <td>
             <%= task.description %>
+          </td>
+
+          <td>
+            <div class = "complete_column">
+              <% if task.complete %>
+                Complete
+              <% else %>
+                Incomplete
+              <%end%>
+            </div>
+          </td>
+
+          <td>
+            <div class = "due_column">
+              <%= task.due_date %>
+            </div>
           </td>
 
           <td>
@@ -24,20 +54,9 @@
             <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
             <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
 
-            <div class = "due_column">
-              <%= task.due_date %>
-            </div>
-            <div class = "complete_column">
-              <% if task.complete %>
-                complete
-              <% else %>
-                incomplete
-              <%end%>
-            </div>
-          </td>
         </tr>
       <% end %>
-      
+
     </tbody>
   </table>
 </div>
