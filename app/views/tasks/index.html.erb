@@ -6,11 +6,11 @@
         <th><%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %></th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <td>Description</td>
         <td><div class = "due_column">Due Date/Status</div></td>
-
       </tr>
 
       <% @tasks.each do |task| %>
@@ -23,6 +23,7 @@
             <%= link_to 'Destroy', task_path(task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>
             <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
             <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
+
             <div class = "due_column">
               <%= task.due_date %>
             </div>
@@ -36,6 +37,7 @@
           </td>
         </tr>
       <% end %>
+      
     </tbody>
   </table>
 </div>
