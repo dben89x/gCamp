@@ -20,6 +20,10 @@
         </th>
 
         <th>
+          <h4>Due In...</h4>
+        </th>
+
+        <th>
         </th>
 
       </tr>
@@ -29,7 +33,17 @@
 
     <%sorted_tasks = @tasks.order(:due_date)%>
       <% sorted_tasks.each do |task| %>
+        <% due_in = task.due_date - Date.today%>
         <tr>
+          <% if task.due_date != nil && due_in >= 0 && due_in <= 7%>
+            <tr class = "overdue alert alert-warning">
+
+          <% elsif due_in <= 0 %>
+            <tr class = "overdue alert alert-danger">
+          <% elsif task.due_date != nil && due_in >= 0%>
+            <tr class = "overdue alert alert-success">
+
+          <%end%>
           <td>
             <%= task.description %>
           </td>
@@ -55,10 +69,24 @@
           </td>
 
           <td>
+            <div class = "due_in_column">
+              <% if task.due_date != nil && due_in >= 0%>
+              <p>Due in <%= due_in.to_int %> days.</p>
+
+              <% elsif due_in <= 0 %>
+              <p><%= due_in.to_int.abs %> days overdue.</p>
+
+              <%end%>
+            </div>
+          </td>
+
+          <td>
+            <div style = "opacity:1">
             <%= link_to 'Destroy', task_path(task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>
             <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
             <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
-
+          </div>
+          </td>
         </tr>
       <% end %>
 
