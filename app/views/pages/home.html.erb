@@ -1,16 +1,15 @@
 <div style="opacity:0.7">
 
   <!--jumbotron-->
-  <div class="container">
-
-    <div class="jumbotron">
+  <div class="jumbotron">
+      <center>
         <h1>gCamp</h1>
         <p>Your life, organized</p>
-    </div>
+      </center>
   </div>
 
-  <!--rows container-->
-  <div class="container">
+  <!--rows -->
+  <div class="panels_and_images">
 
     <!--images row-->
     <div class="row">
@@ -53,11 +52,13 @@
       </div>
     </div>
 
-    <div class="container" style="color:white">
+    <div class="quotes">
 
       <% @quotes.each do |quote|%>
-        <p><%=quote.text%></p>
-        <p><%=quote.author%></p>
+        <center>
+          <p><%=quote.text%></p>
+          <p><%=quote.author%></p>
+        </center>
       <%end%>
     </div>
   </div>
