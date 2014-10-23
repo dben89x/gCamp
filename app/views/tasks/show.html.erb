@@ -1,23 +1,27 @@
+<!-- notice for successfully created task -->
 <% if notice != nil%>
-
-<p id ="notice" class = "alert alert-success"><%=notice%></p>
-
+  <p id ="notice" class = "alert alert-success"><%=notice%></p>
 <%end%>
+
+<!-- show description -->
 <p>
   <strong>Description:</strong>
+
   <%= @task.description %>
 </p>
 
+<!-- show completion status -->
 <p>
   <strong>Status:</strong>
 
 <%if @task.complete%>
     Complete
-
 <%else%>
     Incomplete
+<%end%>
 </p>
 
+<!-- show due date -->
 <p>
   <strong>Due Date:</strong>
   <% if @task.due_date != nil %>
@@ -27,7 +31,6 @@
   <%end%>
 </p>
 
-<%end%>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

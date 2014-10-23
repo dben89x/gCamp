@@ -1,4 +1,0 @@
-class QuoteController < ApplicationController
-
-  
-end

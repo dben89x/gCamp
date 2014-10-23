@@ -14,12 +14,15 @@
   </div>
 
 <!-- form -->
+
+  <!-- description field -->
   <div class="description_field">
     <%= f.label :description, :class=>"label col-md-2" %>
     <%= f.text_field :description, :autofocus=>true, :class=>"col-md-10" %>
     <br><br>
   </div>
 
+  <!-- due date field -->
   <div class ="calendar">
     <%= f.label :due_date, :class =>"label col-md-2" %>
     <%= f.date_field :due_date %>
@@ -28,6 +31,8 @@
 
   <!-- for new page exclusively -->
   <%if @new_page%>
+  
+    <!-- create task button -->
     <div class="actions btn_create_task">
       <%= f.submit 'Create Task', :class=>"btn btn-primary" %>
     </div>
@@ -35,11 +40,14 @@
 
   <!-- for edit page exclusively -->
   <%if @edit_page%>
+
+    <!-- complete checkbox -->
     <div class="field chk_complete">
       <%= f.check_box :complete, {}, true, false %>
       <%= f.label :complete %><br />
     </div>
 
+    <!-- update button -->
     <div class="actions btn_update_task">
       <%= f.submit 'Update Task', :class=>"btn btn-primary" %>
     </div>

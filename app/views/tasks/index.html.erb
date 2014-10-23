@@ -1,95 +1,113 @@
-<!-- <div class="container"> -->
-  <table class = "table new-task-table">
-    <h1>
-      Tasks
-      <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
-    </h1>
-    <hr>
-    <thead>
+<table class = "table new-task-table">
+  <h1>
+    Tasks
+    <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
+  </h1>
+  <hr>
+  <thead>
+    <tr>
+      <th>
+        <h4>Description</h4>
+      </th>
+
+      <th>
+        <h4>Complete</h4>
+      </th>
+
+      <th>
+        <h4>Due Date</h4>
+      </th>
+
+      <th>
+        <h4>Due In...</h4>
+      </th>
+
+      <th>
+      </th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+
+  <!-- sort tasks by date -->
+  <%sorted_tasks = @tasks.order(:due_date)%>
+    <% sorted_tasks.each do |task| %>
+      <% due_in = task.due_date - Date.today%>
+
       <tr>
-        <th>
-          <h4>Description</h4>
-        </th>
 
-        <th>
-          <h4>Complete</h4>
-        </th>
+      <!-- row alert formatting for tasks due relative to today's date   -->
 
-        <th>
-          <h4>Due Date</h4>
-        </th>
+        <!-- if task is due within a week -->
+        <% if task.due_date != nil && due_in >= 0 && due_in <= 7%>
+          <tr class = "overdue alert alert-warning">
 
-        <th>
-          <h4>Due In...</h4>
-        </th>
+        <!-- if task is overdue -->
+        <% elsif due_in <= 0 %>
+          <tr class = "overdue alert alert-danger">
 
-        <th>
-        </th>
+        <!-- if task is due in over a week -->
+        <% elsif task.due_date != nil && due_in >= 0%>
+          <tr class = "overdue alert alert-success">
 
-      </tr>
-    </thead>
+        <%end%>
 
-    <tbody>
+        <!-- description column -->
+        <td>
+          <%= task.description %>
+        </td>
 
-    <%sorted_tasks = @tasks.order(:due_date)%>
-      <% sorted_tasks.each do |task| %>
-        <% due_in = task.due_date - Date.today%>
-        <tr>
-          <% if task.due_date != nil && due_in >= 0 && due_in <= 7%>
-            <tr class = "overdue alert alert-warning">
+        <!-- complete column -->
+        <td>
+          <div class = "complete_column">
+            <% if task.complete %>
+              Complete
+            <% else %>
+              Incomplete
+            <%end%>
+          </div>
+        </td>
 
-          <% elsif due_in <= 0 %>
-            <tr class = "overdue alert alert-danger">
-          <% elsif task.due_date != nil && due_in >= 0%>
-            <tr class = "overdue alert alert-success">
+        <!-- due column -->
+        <td>
+          <div class = "due_column">
 
-          <%end%>
-          <td>
-            <%= task.description %>
-          </td>
+            <% if task.due_date != nil %>
+              <%= task.due_date.strftime('%m/%d/%Y') %>
 
-          <td>
-            <div class = "complete_column">
-              <% if task.complete %>
-                Complete
-              <% else %>
-                Incomplete
-              <%end%>
-            </div>
-          </td>
+            <% else %>
+              No due date set.
 
-          <td>
-            <div class = "due_column">
-              <% if task.due_date != nil %>
-                <%= task.due_date.strftime('%m/%d/%Y') %>
-              <% else %>
-                No due date set.
-              <%end%>
-            </div>
-          </td>
+            <%end%>
+          </div>
+        </td>
 
-          <td>
-            <div class = "due_in_column">
-              <% if task.due_date != nil && due_in >= 0%>
+        <!-- due in column -->
+        <td>
+          <div class = "due_in_column">
+
+            <% if task.due_date != nil && due_in >= 0%>
               <p>Due in <%= due_in.to_int %> days.</p>
 
-              <% elsif due_in <= 0 %>
+            <% elsif due_in <= 0 %>
               <p><%= due_in.to_int.abs %> days overdue.</p>
 
-              <%end%>
-            </div>
-          </td>
-
-          <td>
-            <div style = "opacity:1">
-            <%= link_to 'Destroy', task_path(task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>
-            <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
-            <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
+            <%end%>
           </div>
-          </td>
-        </tr>
-      <% end %>
+        </td>
 
-    </tbody>
-  </table>
-<!-- </div> -->
+        <!-- buttons column -->
+        <td>
+          <div style = "opacity:1">
+          <%= link_to 'Destroy', task_path(task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
+          <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
+        </div>
+        </td>
+
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
