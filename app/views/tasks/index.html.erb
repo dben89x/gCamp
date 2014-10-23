@@ -33,18 +33,24 @@
   <!-- sort tasks by date -->
   <%sorted_tasks = @tasks.order(:due_date)%>
     <% sorted_tasks.each do |task| %>
-      <% due_in = task.due_date - Date.today%>
 
+      <% if task.due_date != nil%>
+        <% due_in = (task.due_date - Date.today).to_int%>
+
+      <% else %>
+        <% due_in = 0.1%>
+
+      <% end %>
       <tr>
 
       <!-- row alert formatting for tasks due relative to today's date   -->
 
         <!-- if task is due within a week -->
-        <% if task.due_date != nil && due_in >= 0 && due_in <= 7%>
+        <% if task.due_date != nil && due_in > 0 && due_in <= 7%>
           <tr class = "overdue alert alert-warning">
 
         <!-- if task is overdue -->
-        <% elsif due_in <= 0 %>
+        <% elsif due_in !=  nil && due_in <= 0 %>
           <tr class = "overdue alert alert-danger">
 
         <!-- if task is due in over a week -->
@@ -87,11 +93,17 @@
         <td>
           <div class = "due_in_column">
 
-            <% if task.due_date != nil && due_in >= 0%>
-              <p>Due in <%= due_in.to_int %> days.</p>
+            <% if task.due_date != nil && due_in > 0 && due_in != 0.1%>
+              <p>Due in <%= due_in %> days.</p>
 
-            <% elsif due_in <= 0 %>
-              <p><%= due_in.to_int.abs %> days overdue.</p>
+            <% elsif task.due_date != nil && due_in && due_in == 0 %>
+              <p>Due today!</p>
+
+            <% elsif due_in < 0 %>
+              <p><%= due_in.abs %> days overdue.</p>
+
+            <% else %>
+              <p>No due date set.</p>
 
             <%end%>
           </div>
