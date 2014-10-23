@@ -2,6 +2,8 @@
   <h1>
     Tasks
     <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
+    <%= link_to 'Incomplete', tasks_path, :class => "btn pull-right" %>
+    <%= link_to 'All', tasks_path(sort_by: "all"), :class => "btn pull-right" %>
   </h1>
   <hr>
   <thead>
@@ -31,33 +33,15 @@
   <tbody>
 
   <!-- sort tasks by date -->
-  <%sorted_tasks = @tasks.order(:due_date)%>
+  <%sorted_tasks = @tasks.order('complete', 'due_date')%>
     <% sorted_tasks.each do |task| %>
 
-      <% if task.due_date != nil%>
-        <% due_in = (task.due_date - Date.today).to_int%>
+      <%if task.complete%>
+        <%task.due_date = nil%>
+      <%end%>
 
-      <% else %>
-        <% due_in = 0.1%>
-
-      <% end %>
-      <tr>
-
-      <!-- row alert formatting for tasks due relative to today's date   -->
-
-        <!-- if task is due within a week -->
-        <% if task.due_date != nil && due_in > 0 && due_in <= 7%>
-          <tr class = "overdue alert alert-warning">
-
-        <!-- if task is overdue -->
-        <% elsif due_in !=  nil && due_in <= 0 %>
-          <tr class = "overdue alert alert-danger">
-
-        <!-- if task is due in over a week -->
-        <% elsif task.due_date != nil && due_in >= 0%>
-          <tr class = "overdue alert alert-success">
-
-        <%end%>
+      <% due_in = due_in(task) %>
+      <tr class = "<%= row_class_for_task(task, due_in) %>">
 
         <!-- description column -->
         <td>
@@ -112,10 +96,10 @@
         <!-- buttons column -->
         <td>
           <div style = "opacity:1">
-          <%= link_to 'Destroy', task_path(task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>
-          <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
-          <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
-        </div>
+            <%= link_to 'Destroy', task_path(task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>
+            <%= link_to 'Edit', edit_task_path(task), :class => "btn btn-warning pull-right" %>
+            <%= link_to 'Show', task, :class => "btn btn-success pull-right"%>
+          </div>
         </td>
 
       </tr>

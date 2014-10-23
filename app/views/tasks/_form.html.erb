@@ -31,7 +31,7 @@
 
   <!-- for new page exclusively -->
   <%if @new_page%>
-  
+
     <!-- create task button -->
     <div class="actions btn_create_task">
       <%= f.submit 'Create Task', :class=>"btn btn-primary" %>
@@ -43,7 +43,7 @@
 
     <!-- complete checkbox -->
     <div class="field chk_complete">
-      <%= f.check_box :complete, {}, true, false %>
+      <%= f.check_box :complete %>
       <%= f.label :complete %><br />
     </div>
 
