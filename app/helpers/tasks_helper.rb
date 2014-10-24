@@ -11,7 +11,6 @@ module TasksHelper
   end
 
   def row_class_for_task(task, due_in)
-    "opacity:0.5"
 
     if task.due_date != nil && due_in > 0 && due_in <= 7
       "alert alert-warning"
