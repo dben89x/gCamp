@@ -18,9 +18,9 @@
 @import "bootstrap";
 
 body{
-  background: image-url("aurora-bg.jpg");
-  background-size: cover;
-  background-position: fixed;
+  background:image-url("aurora-bg.jpg");
+  background-size:cover;
+  background-position:fixed;
   font-family:"arial black";
   margin:80px 80px 0px 80px;
   color:white;
@@ -81,7 +81,13 @@ h1 {
   color:black;
 }
 
+:link {
+  color:FFFFFF;
+}
 
+:visited {
+  color:#EBEBEB;
+}
 
 // scaffold stylesheet stuff
 // pre {

@@ -2,6 +2,7 @@
   <h1>
     Tasks
     <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
+
     <%= link_to 'Incomplete', tasks_path(sort_by: "incomplete"), :class => "btn pull-right" %>
     <%= link_to 'All', tasks_path(sort_by: "all"), :class => "btn pull-right" %>
   </h1>
@@ -9,15 +10,15 @@
   <thead>
     <tr>
       <th>
-        <h4>Description</h4>
+        <h4><%=link_to 'Description', tasks_path(sort_by: "description")%></h4>
       </th>
 
       <th>
-        <h4>Complete</h4>
+        <h4><%=link_to 'Complete', tasks_path(sort_by: "complete")%></h4>
       </th>
 
       <th>
-        <h4>Due Date</h4>
+        <h4><%=link_to 'Due Date', tasks_path(sort_by: "due_date")%></h4>
       </th>
 
       <th>
@@ -33,12 +34,7 @@
   <tbody>
 
   <!-- sort tasks by date -->
-  <%sorted_tasks = @tasks.order('complete', 'due_date')%>
-    <% sorted_tasks.each do |task| %>
-
-      <%if task.complete%>
-        <%task.due_date = nil%>
-      <%end%>
+  <% @tasks.each do |task| %>
 
       <% due_in = due_in(task) %>
       <tr class = "<%= row_class_for_task(task, due_in) %>">
@@ -53,7 +49,7 @@
           <div class = "complete_column">
             <% if task.complete %>
               Complete
-            <% else %>
+            <% elsif task.complete == false%>
               Incomplete
             <%end%>
           </div>
@@ -73,7 +69,7 @@
           </div>
         </td>
 
-        <!-- due in column -->
+        <!-- due_in column -->
         <td>
           <div class = "due_in_column">
 
@@ -85,7 +81,6 @@
 
             <% elsif due_in < 0 %>
               <p><%= due_in.abs %> days overdue.</p>
-
             <% else %>
               <p>No due date set.</p>
 
@@ -93,6 +88,7 @@
           </div>
         </td>
 
+<td><%= task.complete%></td>
         <!-- buttons column -->
         <td>
           <%= link_to 'Destroy', task_path(task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>

@@ -10,6 +10,17 @@ module TasksHelper
     end
   end
 
+  def sortable(title)
+
+    if params[:sort] == "all"
+      link_to title.titleize, table_sort: title, sort: :all
+
+    else
+      link_to title.titleize, table_sort: title, sort: :all
+
+    end
+  end
+
   def row_class_for_task(task, due_in)
 
     if task.due_date != nil && due_in > 0 && due_in <= 7
