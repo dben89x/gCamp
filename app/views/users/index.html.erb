@@ -1,0 +1,35 @@
+<table class = "table">
+  <h1>
+    Users
+    <%= link_to "New User", new_user_path, :class => "btn btn-primary pull-right" %>
+  </h1>
+  <hr>
+  <thead>
+    <tr>
+      <th>
+        <h3>First Name</h3>
+      </th>
+      <th>
+        <h3>Last Name</h3>
+      </th>
+      <th>
+        <h3>E-Mail</h3>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.first_name %>
+      </td>
+      <td>
+        <%= user.last_name %>
+      </td>
+      <td>
+        <%= user.email %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
