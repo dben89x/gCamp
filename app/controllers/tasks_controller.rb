@@ -66,7 +66,7 @@ class TasksController < ApplicationController
   end
 
   # DELETE /tasks/1
-  # DELETE /tasks/1.json
+  # DELETE /tasks/1.json 
   def destroy
     @task.destroy
     respond_to do |format|

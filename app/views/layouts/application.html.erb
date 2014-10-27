@@ -34,19 +34,20 @@
 
 
     <div class = "social_media_links pull-right">
-      <%= link_to "http://www.galvanize.it/#welcome" do%>
+      <%= link_to "http://www.galvanize.it/#welcome", :target => '_blank' do%>
         <%image_tag("gschool1.svg", width: "80em")%>
       <%end%>
 
-      <%= link_to "https://www.linkedin.com" do%>
+      <%= link_to "https://www.linkedin.com/profile/view?id=319703917&trk=nav_responsive_tab_profile",
+        :target => '_blank' do%>
         <%image_tag("linkedin.png", width: "50em")%>
       <%end%>
 
-      <%= link_to "https://www.github.com" do%>
-        <%image_tag("GitHub1.png", width: "50em")%>
+      <%= link_to "https://github.com/dben89x", :target => '_blank' do%>
+        <%image_tag("github2.png", width: "60em")%>
       <%end%>
 
-      <%= link_to "https://www.twitter.com" do%>
+      <%= link_to "https://twitter.com/db89x", :target => '_blank' do%>
         <%image_tag("twitter.png", width: "50em")%>
       <%end%>
     </div>

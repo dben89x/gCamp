@@ -34,7 +34,7 @@
 
     <!-- create task button -->
     <div class="actions btn_create_task">
-      <%= f.submit 'Create Task', :class=>"btn btn-primary" %>
+      <%= f.submit 'Create Task', :class=>"btn btn-submit" %>
     </div>
   <%end%>
 
@@ -42,14 +42,14 @@
   <%if @edit_page%>
 
     <!-- complete checkbox -->
-    <div class = "chk_complete">
+    <div class = "check_box">
       <%=  f.check_box :complete %>
       <%= f.label :complete %><br />
     </div>
 
     <!-- update button -->
     <div class="actions btn_update_task">
-      <%= f.submit 'Update Task', :class=>"btn btn-primary" %>
+      <%= f.submit 'Update Task', :class=>"btn btn-submit" %>
     </div>
     <br>
   <%end%>
