@@ -13,6 +13,8 @@
       <th>
         <h3>E-Mail</h3>
       </th>
+      <th>
+      </th>
     </tr>
   </thead>
 
@@ -24,6 +26,9 @@
       </td>
       <td>
         <%= mail_to(user.email) %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_user_path(user) %>
       </td>
     </tr>
     <% end %>

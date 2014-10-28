@@ -18,8 +18,20 @@
     <br><br>
   </div>
 
-  <div class="actions btn_create_user">
-    <%= f.submit 'Create User', :class=>"btn btn-submit" %>
-  </div>
+  <% if @new_page %>
+
+    <div class="actions btn_create_user">
+      <%= f.submit 'Create User', :class=>"btn btn-submit" %>
+    </div>
+
+  <% end %>
+
+  <% if @edit_page %>
+
+    <div class="actions btn_create_user">
+      <%= f.submit 'Update User', :class=>"btn btn-submit" %>
+    </div>
+
+  <% end %>
 
 <% end %>
