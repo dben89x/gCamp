@@ -1,7 +1,11 @@
 <% if notice != nil%>
   <p id ="notice" class = "alert alert-success"><%=notice%></p>
 <%end%>
-
+<% full_name = (@user.first_name + " " + @user.last_name) %>
+<h1>
+  <%= full_name %>
+  <%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-primary pull-right' %>
+</h1>
 <p>
   <strong>First Name:</strong>
   <%= @user.first_name %>
@@ -14,7 +18,7 @@
 
 <p>
   <strong>E-Mail:</strong>
-  <%= @user.email %>
+  <%= mail_to(@user.email) %>
 </p>
 
 <%= link_to 'Back', users_path %>
