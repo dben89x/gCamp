@@ -15,7 +15,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-
+    @show_page = true
   end
 
   def create

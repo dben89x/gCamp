@@ -1,0 +1,15 @@
+<table class = 'table'>
+  <thead>
+    <tr>
+      <th>
+        <h2><%= @project.name %></h2>
+      </th>
+      <th>
+        <%= link_to 'Edit', edit_project_path(@project), :class=>'btn btn-primary' %>
+        <%= link_to 'Destroy', project_path(@project), method: :delete, :class=>'btn btn-danger' %>
+      </th>
+    </tr>
+  </thead>
+
+</table>
+  <%= link_to 'To Index', projects_path %>
