@@ -6,19 +6,20 @@
   <%= full_name %>
   <%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-primary pull-right' %>
 </h1>
-<p>
+
+<div class = 'col-sm-2'>
   <strong>First Name:</strong>
-  <%= @user.first_name %>
-</p>
+</div>
+  <%= @user.first_name %><br>
 
-<p>
+<div class = 'col-sm-2'>
   <strong>Last Name:</strong>
-  <%= @user.last_name %>
-</p>
+</div>
+  <%= @user.last_name %><br>
 
-<p>
+<div class = 'col-sm-2'>
   <strong>E-Mail:</strong>
-  <%= mail_to(@user.email) %>
-</p>
+</div>
+  <%= mail_to(@user.email) %><br><br>
 
 <%= link_to 'Back', users_path %>
