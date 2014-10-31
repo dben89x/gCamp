@@ -1,3 +1,6 @@
+<% if notice != nil%>
+  <p id ="notice" class = "alert alert-success"><%=notice%></p>
+<%end%>
 <h1>
   Projects
   <%= link_to "Create Project", new_project_path, :class => 'btn btn-primary pull-right' %>

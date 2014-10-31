@@ -2,7 +2,7 @@
 <%= render 'form' %>
 <div class = 'well text-center col-md-offset-2 col-md-3'>
   <div class = 'btn btn-danger'>
-    <%= link_to 'Delete User', method: :delete %>
+    <%= link_to 'Delete User', user_path(@user), method: :delete %>
   </div>
 </div><h1><br></h1>
 <%= link_to 'To Index', users_path %>
