@@ -1,11 +1,14 @@
 <table class = "table new-task-table">
-  <h1>
-    Tasks
-    <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
+  <div class = 'page-header'>
+    <div class = "pull-right">
 
-    <%= link_to 'Incomplete', tasks_path(sort_by: "incomplete"), :class => "btn pull-right" %>
-    <%= link_to 'All', tasks_path(sort_by: "all"), :class => "btn pull-right" %>
-  </h1>
+      <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
+      <%= link_clickable('All', tasks_path(sort_by: "all")) %>
+      <%= link_clickable('Incomplete', tasks_path )  %>
+    </div>
+    <h1>Tasks</h1>
+
+  </div>
   <hr>
   <thead>
     <tr>

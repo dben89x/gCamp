@@ -10,17 +10,6 @@ module TasksHelper
     end
   end
 
-  def sortable(title)
-
-    if params[:sort] == "all"
-      link_to title.titleize, table_sort: title, sort: :all
-
-    else
-      link_to title.titleize, table_sort: title, sort: :all
-
-    end
-  end
-
   def row_class_for_task(task, due_in)
 
     if task.due_date != nil && due_in > 0 && due_in <= 7
@@ -34,6 +23,22 @@ module TasksHelper
 
     elsif task.due_date == nil
       "none"
+    end
+  end
+
+  def link_clickable(string, url)
+    uri = URI.parse(request.url)
+
+    if uri.query
+      uri_path = "#{uri.path}?#{uri.query}"
+    else
+      uri_path = "#{uri.path}"
+    end
+
+    if uri_path == url
+      return string
+    else
+      return link_to string, url
     end
   end
 

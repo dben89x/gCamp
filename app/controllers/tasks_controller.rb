@@ -8,8 +8,6 @@ class TasksController < ApplicationController
 
     if params[:sort_by] == "all"
       @tasks = Task.all
-    elsif params[:sort_by] == "incomplete"
-      @tasks = Task.where(complete:false)
     elsif params[:sort_by] == "description"
       @tasks = Task.all.sort_by { |task| task.description.downcase }
     elsif params[:sort_by] == "due_date"
