@@ -7,7 +7,7 @@
   <%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-primary pull-right' %>
 </h1>
 
-<div class = 'dl-horizontal'>
+<dl class = 'dl-horizontal'>
   <dt>First Name:</dt>
   <dd><%= @user.first_name %></dd>
 
@@ -16,5 +16,5 @@
 
   <dt>E-Mail:</dt>
   <dd><%= mail_to(@user.email) %></dd><br>
-
+</dl>
 <!-- <%= link_to 'Back', users_path %> -->
