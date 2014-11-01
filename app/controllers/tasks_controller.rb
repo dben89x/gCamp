@@ -5,17 +5,21 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.where(complete: false)
-
-    if params[:sort_by] == "all"
+    p (request.url)
+if URI.parse(request.url).query
+p @query
+  p "stuff"
+    if params[:filter] == "all"
       @tasks = Task.all
     elsif params[:sort_by] == "description"
       @tasks = Task.all.sort_by { |task| task.description.downcase }
     elsif params[:sort_by] == "due_date"
       @tasks = Task.order(due_date: :desc)
+    elsif params[:sort_by] == "complete"
+      @tasks = Task.order(:complete)
     end
-
   end
-
+end
   # GET /tasks/1
   # GET /tasks/1.json
   def show

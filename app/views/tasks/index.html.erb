@@ -3,10 +3,14 @@
     <div class = "pull-right">
 
       <%= link_to 'Create Task', new_task_path, :class => "btn btn-primary pull-right" %>
-      <%= link_clickable('All', tasks_path(sort_by: "all")) %>
+
+      <%= link_clickable('All', tasks_path(filter: "all")) %>
       <%= link_clickable('Incomplete', tasks_path )  %>
     </div>
     <h1>Tasks</h1>
+    <p>
+      <%= @query %>
+    </p>
 
   </div>
   <hr>

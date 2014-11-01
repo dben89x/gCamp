@@ -30,12 +30,14 @@ module TasksHelper
     uri = URI.parse(request.url)
 
     if uri.query
-      uri_path = "#{uri.path}?#{uri.query}"
+      @uri_path = "#{uri.path}?#{uri.query}"
+      @query = true
     else
-      uri_path = "#{uri.path}"
+      @uri_path = "#{uri.path}"
+      @query = false
     end
 
-    if uri_path == url
+    if @uri_path == url
       return string
     else
       return link_to string, url
