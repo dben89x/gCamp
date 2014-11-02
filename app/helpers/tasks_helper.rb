@@ -26,21 +26,33 @@ module TasksHelper
     end
   end
 
-  def link_clickable(string, url)
+  def link_clickable(string, param_path, unique)
     uri = URI.parse(request.url)
+    p param_path
+    @uri_params = URI.parse(param_path)
+p @uri_params
+p uri.path
+p uri.query
 
-    if uri.query
-      @uri_path = "#{uri.path}?#{uri.query}"
+    if @uri_params.query
+      @uri1 = "#{@uri_params.path}?#{@uri_params.query}"
+    else
+      @uri2 = "#{@uri_params.path}"
+    end
+
+
+    if uri.query{"filter"}
+      @uri = "#{@uri_params.path}?#{@uri_params.query}"
       @query = true
     else
-      @uri_path = "#{uri.path}"
+      @uri = "#{@uri_params.path}"
       @query = false
     end
 
-    if @uri_path == url
+    if @uri == param_path
       return string
     else
-      return link_to string, url
+      return link_to string, param_path
     end
   end
 
