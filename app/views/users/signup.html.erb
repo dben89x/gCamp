@@ -1,5 +1,11 @@
 <%= form_for @user, url: signup_path do |f| %>
 
+<p>   First Name:  </p>
+<%= f.text_field :first_name %><br>
+
+<p>   Last Name:  </p>
+<%= f.text_field :last_name %><br>
+
   <p>   E-mail:  </p>
   <%= f.email_field :email %><br>
 
