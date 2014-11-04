@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Signup' do
+feature 'signup' do
 
 
 

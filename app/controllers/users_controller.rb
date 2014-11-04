@@ -7,15 +7,15 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def new
     @user = User.new
-    @new_page = true
+    @new_user = true
   end
 
   def edit
-    @edit_page = true
+    @edit_user = true
   end
 
   def show
-    @show_page = true
+    @show_user = true
   end
 
   def create

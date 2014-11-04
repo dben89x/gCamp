@@ -1,6 +1,7 @@
 class AuthenticatesController < ApplicationController
 
   def signin
+    @signin = true
     @user = User.new
     render :template => 'users/signin'
   end

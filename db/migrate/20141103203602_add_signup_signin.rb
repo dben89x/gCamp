@@ -1,4 +1,4 @@
-class AddSignupSignin < ActiveRecord::Migration
+class AddsignupSignin < ActiveRecord::Migration
   def change
     add_column :users, :password_digest, :string
   end
