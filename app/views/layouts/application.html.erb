@@ -12,13 +12,28 @@
   <body>
     <div>
 
-    <!--navbar-->
-    <div class="navbar-fixed-top">
-      <div class="navbar-header">
-        <p class="navbar-brand"> <%=link_to "gCamp", main_path%> </p>
+      <!--navbar-->
+      <div class="navbar-fixed-top">
+        <div class="navbar-header">
+          <p class="navbar-brand">
+            <%=link_to "gCamp", main_path%>
+              <div class = 'pull-right' >
+                <% if current_user %>
+                  <%= link_to current_user.email, user_path(current_user) %>
+                  <%= link_to "Sign Out", user_path(current_user), method: :delete %>
+                  <h5>params</h5>
+                <% else %>
+                  <%= link_to 'Sign In', signin_path %>
+                  <%= link_to "Sign Up", signup_path %>
+                <% end %>
+
+            </div>
+          </p>
+        </div>
+        <div class="navbar-collapse collapse"></div>
       </div>
-      <div class="navbar-collapse collapse"></div>
-    </div>
+
+
 
   <%= yield %>
   <div>
