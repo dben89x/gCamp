@@ -5,7 +5,8 @@ class RegistersController<ApplicationController
     @user = User.new
     render :template => 'users/signup'
   end
-
+# Rails.logger.debug(params.inspect)
+  
   def create
     @user = User.new(user_params)
     if @user.save
@@ -15,7 +16,7 @@ class RegistersController<ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password_digest)
+    params.require(:user).permit(:first_name, :last_name, :email, :password_digest, :password_confirmation)
   end
 
 end

@@ -22,7 +22,7 @@
         <div class = 'navbar-brand pull-right' >
           <% if current_user %>
             <%= link_to current_user.email, user_path(current_user) %>
-            <%= link_to "Sign Out", user_path(current_user), method: :delete %>
+            <%= link_to "Sign Out", signout_path %>
           <% else %>
             <%= link_to 'Sign In', signin_path %>
             <%= link_to "Sign Up", signup_path %>

@@ -7,18 +7,21 @@ class AuthenticatesController < ApplicationController
   end
 
   def create
-    @user = User.find_by(params[:email])
-    if true
+    @user = User.find_by_email(params[:email])
+    p "USER"
+    p @user
+    if @user && @user.authenticate(params[:password_digest])
       session[:user_id] = @user.id
       redirect_to main_path
     else
-      redirect_to users_path
+      @sign_in_error = "Username / password combination is invalid"
+      # redirect_to users_path
     end
   end
 
   def destroy
     session.clear
-    redirect_to main
+    redirect_to main_path
   end
 
 end

@@ -1,1 +1,25 @@
-<%= render :partial =>'users/form' %>
+<%= form_tag signin_path do |f| %>
+
+  <div class = "row">
+    <div class="well col-md-4 col-md-offset-4">
+
+      <% if @sign_in_error %>
+        <p>
+          <%= @sign_in_error %>
+        </p>
+      <% end %>
+
+      <h2>Sign into gCamp</h2><br>
+
+      <p>E-mail:</p>
+      <%= email_field_tag :email %>
+      <br><br>
+
+      <% label_tag :password_digest %>
+      <%= password_field_tag :password_digest %>
+      <br>
+
+      <br><%= submit_tag 'Sign In' %>
+    </div>
+  </div>
+<% end %>
