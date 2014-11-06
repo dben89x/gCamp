@@ -69,7 +69,7 @@
         <%= link_to 'Delete User', user_path(@user), method: :delete, :class=>'btn btn-danger' %>
       <% end %>
 
-      <% if @signup %>
+      <% if @path == signup_path %>
         <%= f.submit 'Sign Up' %>
       <% end %>
 
