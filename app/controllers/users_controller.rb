@@ -8,10 +8,14 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   def new
     @user = User.new
     @new_user = true
+    @model = @user
+    @path = users_path
   end
 
   def edit
     @edit_user = true
+    @model = @user
+    @path = edit_user_path
   end
 
   def show
@@ -20,6 +24,8 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def create
     @user = User.new(user_params)
+    @model = @user
+    @path = users_path
     @user.save
     redirect_to users_path, notice: 'User was successfully created'
   end
@@ -41,6 +47,6 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password_digest)
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
   end
 end

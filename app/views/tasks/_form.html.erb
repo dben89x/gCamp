@@ -33,23 +33,23 @@
   <%if @new_page%>
 
     <!-- create task button -->
-    <div class="actions btn_create_task col-md-offset-2">
+    <div class="actions btn_create_task">
       <%= f.submit 'Create Task', :class=>"btn btn-submit" %>
-    </div>
+    </div><br>
   <%end%>
 
   <!-- for edit page exclusively -->
   <%if @edit_page%>
 
     <!-- complete checkbox -->
-    <div class = "check_box">
+    <!-- <div class = "col-md-offset-2"> -->
       <%=  f.check_box :complete %>
       <%= f.label :complete %><br />
-    </div>
+    <!-- </div> -->
 
     <!-- update button -->
     <div class="actions btn_update_task">
-      <%= f.submit 'Update Task', :class=>"btn btn-submit col-md-offset-2" %>
+      <%= f.submit 'Update Task', :class=>"btn btn-submit" %>
     </div>
     <br>
   <%end%>
