@@ -28,11 +28,7 @@ module TasksHelper
 
   def link_clickable(string, param_path, unique)
     uri = URI.parse(request.url)
-    p param_path
     @uri_params = URI.parse(param_path)
-p @uri_params
-p uri.path
-p uri.query
 
     if @uri_params.query
       @uri1 = "#{@uri_params.path}?#{@uri_params.query}"
