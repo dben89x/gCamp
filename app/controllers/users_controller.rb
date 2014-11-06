@@ -15,7 +15,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   def edit
     @edit_user = true
     @model = @user
-    @path = edit_user_path
+    @path = user_path
   end
 
   def show
@@ -24,8 +24,6 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def create
     @user = User.new(user_params)
-    @model = @user
-    @path = users_path
     @user.save
     redirect_to users_path, notice: 'User was successfully created'
   end
