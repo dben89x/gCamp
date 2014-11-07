@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -7,30 +7,29 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def new
     @user = User.new
-    @new_user = true
-    @model = @user
-    @path = users_path
   end
 
   def edit
-    @edit_user = true
-    @model = @user
-    @path = user_path
   end
 
   def show
-    @show_user = true
   end
 
   def create
     @user = User.new(user_params)
-    @user.save
-    redirect_to users_path, notice: 'User was successfully created'
+    if @user.save
+      redirect_to users_path, notice: 'User was successfully created'
+    else
+      render :new
+    end
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(@user), notice: 'User was successfully updated'
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: 'User was successfully updated'
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -45,6 +44,6 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end

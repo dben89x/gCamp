@@ -5,10 +5,10 @@
 
 
       <!-- titles -->
-      <% if @path == signin_path %><h2>Sign into gCamp</h2><% end %>
-      <% if @path == signup_path %><h2>Sign Up for gCamp!</h2><% end %>
-      <% if @new_user %><h2>New User</h2><% end %>
-      <% if @edit_user %><h2>Edit User</h2><% end %>
+      <% if @path == signin_path %><h2>Sign into gCamp</h2>
+      <% elsif @path == signup_path %><h2>Sign Up for gCamp!</h2>
+      <% elsif @path == users_path %><h2>New User</h2>
+      <% elsif @path != users_path && @path == user_path %><h2>Edit User</h2><% end %>
 
 
       <!-- signin_error -->
@@ -21,13 +21,15 @@
 
 
       <!-- signup errors -->
-      <% if @path == signup_path %>
-        <% if @model.errors.present? %>
-          <% @model.errors.full_messages.each do |message| %>
-            <div class = 'error'>
-              <%= message %>
-            </div>
-          <% end %><br>
+      <% if @path != signin_path %>
+        <% if @path == signup_path or @path == users_path or @path == user_path  %>
+          <% if @model.errors.present? %>
+            <% @model.errors.full_messages.each do |message| %>
+              <div class = 'error'>
+                <%= message %>
+              </div>
+            <% end %><br>
+          <% end %>
         <% end %>
       <% end %>
 
@@ -60,21 +62,18 @@
       <!-- buttons -->
       <br><br>
 
-      <% if @new_user %>
+      <% if @path == users_path %>
         <%= f.submit 'Create User', :class=>"btn btn-submit" %>
-      <% end %>
 
-      <% if @edit_user %>
+      <% elsif @path == signup_path %>
+        <%= f.submit 'Sign Up!' %>
+
+      <% elsif @path == signin_path %>
+        <%= f.submit 'Sign In!' %>
+
+      <% elsif @path == user_path %>
         <%= f.submit 'Update User', :class=>"btn btn-submit" %>
         <%= link_to 'Delete User', user_path(@user), method: :delete, :class=>'btn btn-danger' %>
-      <% end %>
-
-      <% if @path == signup_path %>
-        <%= f.submit 'Sign Up' %>
-      <% end %>
-
-      <% if @path == signin_path %>
-        <%= f.submit 'Sign In' %>
       <% end %>
     </div>
   </div>

@@ -11,13 +11,16 @@ feature 'Projects' do
     expect(page).to have_content("Something to do")
 
     click_on "Edit"
+    fill_in "Name", with: ""
+    click_on "Update"
+    expect(page).to have_content("Name can't be blank")
+
     fill_in "Name", with: "Another thing"
     click_on "Update"
     expect(page).to have_content("Another thing")
 
     click_on "Destroy"
-    expect(page).to have_no_content("Another thing")
-
+    expect(page).to have_content("Project was successfully destroyed")
   end
 
 end

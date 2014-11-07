@@ -2,8 +2,6 @@ class AuthenticatesController < ApplicationController
 
   def signin
     @signin = true
-    @model = :session
-    @path = signin_path
     render template: 'users/signin'
   end
 
@@ -14,8 +12,6 @@ class AuthenticatesController < ApplicationController
       session[:user_id] = @user.id
       redirect_to main_path
     else
-      @model = :session
-      @path = signin_path
       @sign_in_error = "Username / password combination is invalid"
       render 'users/signin'
     end
