@@ -36,7 +36,6 @@ module TasksHelper
       @uri2 = "#{@uri_params.path}"
     end
 
-
     if uri.query{"filter"}
       @uri = "#{@uri_params.path}?#{@uri_params.query}"
       @query = true
