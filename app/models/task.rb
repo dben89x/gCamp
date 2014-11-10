@@ -1,7 +1,7 @@
 class ValidateDueDate < ActiveModel::Validator
 
   def validate(task)
-    if task.due_date < Date.today
+    if task.due_date != nil && task.due_date < Date.today
       task.errors[:task] << 'due date must be after today'
     end
   end
