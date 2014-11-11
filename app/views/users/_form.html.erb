@@ -35,19 +35,19 @@
 
       <%= f.label :email %>
       <%= f.email_field :email, :class=>"col-md-12" %>
-        <br><br>
+        <br><br><br>
 
       <%= f.label :password %>
       <%= f.password_field :password, :class=>"col-md-12" %>
+        <br><br><br>
 
-        <br><br>
       <% if path != signin_path %>
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, :class=>"col-md-12" %>
+        <br><br><br>
       <% end %>
 
       <!-- buttons -->
-        <br><br>
         <%= f.submit button, class: 'btn btn-submit' %>
 
         <% if @edit_user %>
