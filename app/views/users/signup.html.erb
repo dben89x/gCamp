@@ -1,3 +1,1 @@
-<% @model = @user %>
-<% @path = signup_path %>
-<%= render partial: 'users/form' %>
+<%= render 'users/form', title: 'Sign up for gCamp!', button: 'Sign Up!', path: signup_path, model: @user %>

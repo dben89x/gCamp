@@ -1,4 +1,3 @@
-<h1>New task</h1>
-  <% @new_page = true %>
-  <%= render 'form' %>
+<% @new_page = true %>
+<%= render 'form', title: 'New task' %>
 <%= link_to 'Back', tasks_path %>

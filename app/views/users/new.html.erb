@@ -1,4 +1,2 @@
-<% @model = @user %>
-<% @path = users_path %>
-<%= render 'form' %>
+<%= render 'form', title: 'New User', button: 'Create User', path: users_path, model: @user %>
 <%= link_to 'Back', users_path %>

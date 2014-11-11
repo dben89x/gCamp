@@ -1,3 +1,1 @@
-<% @model = :session %>
-<% @path = signin_path %>
-<%= render partial: 'users/form' %>
+<%= render 'users/form', title: 'Sign into gCamp', button: 'Sign In!', path: signin_path, model: :session %>

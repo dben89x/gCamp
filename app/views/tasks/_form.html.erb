@@ -1,55 +1,22 @@
 <%= form_for(@task) do |f| %>
+
+  <h1> <%= title %> </h1>
   <div class = "form-horizontal" role="form">
-    <% if @task.errors.any? %>
-      <% @task.errors.full_messages.each do |message| %>
-        <div class ="error">
-          <%= message %>
-        </div>
-      <% end %>
-      <br>
-    <% end %>
-  </div>
+    <%= render '/errors.html.erb', model: @task %>
 
-<!-- form -->
-
-  <!-- description field -->
-  <div class="description_field">
     <%= f.label :description, :class=>"label col-md-2" %>
     <%= f.text_field :description, :autofocus=>true, :class=>"form-control" %>
     <br><br>
-  </div>
 
-  <!-- due date field -->
-  <div class ="calendar">
     <%= f.label :due_date, :class =>"label col-md-2" %>
     <%= f.date_field :due_date, :class=>'form-control' %>
-    <br><br>
-  </div>
-
-  <!-- for new page exclusively -->
-  <%if @new_page%>
-
-    <!-- create task button -->
-    <div class="actions btn_create_task">
-      <%= f.submit 'Create Task', :class=>"btn btn-submit" %>
-    </div><br>
-  <%end%>
-
-  <!-- for edit page exclusively -->
-  <%if @edit_page%>
-
-    <!-- complete checkbox -->
-    <!-- <div class = "col-md-offset-2"> -->
-      <%=  f.check_box :complete %>
-      <%= f.label :complete %><br />
-    <!-- </div> -->
-
-    <!-- update button -->
-    <div class="actions btn_update_task">
-      <%= f.submit 'Update Task', :class=>"btn btn-submit" %>
-    </div>
     <br>
-  <%end%>
 
+    <%if @edit_page%>
+      <%= f.check_box :complete %>
+      <%= f.label :complete %><br><br>
+    <%end%>
+
+    <%= f.submit :class=>"btn btn-submit" %><br><br>
   </div>
 <% end %>
