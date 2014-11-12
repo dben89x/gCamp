@@ -2,12 +2,14 @@ require 'rails_helper'
 
 feature 'Users' do
 
-  User.create(
-    first_name: 'John',
-    last_name: 'Smith',
-    email: 'j@s.com',
-    password: 'js'
-  )
+  before do
+    User.create(
+      first_name: 'John',
+      last_name: 'Smith',
+      email: 'j@s.com',
+      password: 'js'
+    )
+  end
 
   scenario 'User creates and edits user with wrong and correct info' do
     visit users_path
