@@ -1,6 +1,0 @@
-== README
-
----Heroku Link:
----serene-island-2792.herokuapp.com/
-
-https://travis-ci.org/dben89x/gCamp.svg?branch=master
