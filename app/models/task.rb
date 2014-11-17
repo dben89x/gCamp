@@ -9,6 +9,9 @@ class ValidateDueDate < ActiveModel::Validator
 end
 
 class Task < ActiveRecord::Base
+
+  belongs_to :project
+
   include ActiveModel::Validations
   validates_with ValidateDueDate
   validates :description, presence: true

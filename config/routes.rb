@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :tasks
+  resources :projects do
+    resources :tasks
+  end
   resources :users
-  resources :projects
 
   root "home#index", as: :main
   get '/about' => 'about#index', as: :about

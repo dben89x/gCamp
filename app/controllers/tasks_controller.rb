@@ -1,12 +1,21 @@
 class TasksController < ApplicationController
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
+
+  def set_task
+    @task = @project.tasks.find(params[:id])
+  end
+
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+
+
   def index
-    @tasks
     if params[:filter] == "all"
-      @tasks = Task.all
+      @tasks = @project.tasks
     else
-      @tasks = Task.where(complete: false)
+      @tasks = @project.tasks.where(complete: false)
     end
 
     # if params[:sort_by] == "description"
@@ -25,7 +34,7 @@ class TasksController < ApplicationController
 
   def new
     @new_page = true
-    @task = Task.new
+    @task = @project.tasks.new
   end
 
   def edit
@@ -33,9 +42,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.new(task_params)
     if @task.save
-      redirect_to task_path(@task), notice: 'Task was successfully created.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -43,7 +52,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to task_path(@task), notice: 'Task was successfully updated.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
       render :edit
     end
@@ -54,10 +63,7 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice: 'Task was successfully destroyed.'
   end
 
-  private
-    def set_task
-      @task = Task.find(params[:id])
-    end
+
 
     def task_params
       params.require(:task).permit(:description, :complete, :due_date)

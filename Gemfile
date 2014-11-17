@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 group :production do
   gem "rails_12factor"
 end
-
+gem 'faker'
 gem "pg"
 
 gem 'haml', '~> 4.0.5'
