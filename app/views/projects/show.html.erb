@@ -7,6 +7,14 @@
   <%= link_to 'Destroy', project_path(@project), method: :delete, :class=>'btn btn-danger pull-right' %>
   <%= link_to 'Edit', edit_project_path(@project), :class=>'btn btn-primary pull-right' %>
 </h2>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Projects", projects_path(@project) %></li>
+  <li class="active"><%= @project.name %></li>
+</ol><br>
+
+  <%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %>
+
 </div>
 
   <!-- <%= link_to 'To Index', projects_path %> -->
