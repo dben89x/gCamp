@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Tasks' do
 
   scenario 'User creates and edits an event task' do
-    visit tasks_path
+    visit projects_path
     click_on "Create Task"
 
     fill_in "Description", with: "A description"
