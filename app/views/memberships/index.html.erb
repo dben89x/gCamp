@@ -1,0 +1,19 @@
+<h1><%= "#{@project.name}: Manage Members" %></h1>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Projects", projects_path(@project) %></li>
+  <li><%= link_to @project.name, project_path(@project) %></li>
+  <li class="active">Memberships</li>
+</ol><br>
+
+<% if @membership.errors.present? %>
+  <% @membership.errors.full_messages.each do |message| %>
+    <div class = 'error'>
+      <%= message %>
+    </div>
+  <% end %><br>
+<% end %>
+
+<%= render 'new_form' %>
+
+<%= render 'update_form' %>

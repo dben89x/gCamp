@@ -1,0 +1,14 @@
+<%= form_for [@project, @membership] do |f| %>
+
+  <div class="well form-inline">
+    <div class="form-group">
+      <%= f.collection_select :user_id, User.all, :id, :full_name, {prompt: "Please select a user"}, {class: "form-control"} %>
+    </div>
+
+    <div class="form-group">
+      <%= f.select :status, options_for_select(['Owner', 'Member']), {}, {class: "form-control"} %>
+    </div>
+
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

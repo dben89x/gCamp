@@ -25,10 +25,7 @@
     <% @users.each do |user| %>
     <tr>
       <td>
-        <% if user.first_name && user.last_name %>
-          <% full_name = (user.first_name + " " + user.last_name) %>
-          <%= link_to full_name, user_path(user)%>
-        <% end %>
+        <%= link_to user.full_name, user_path(user)%>
       </td>
       <td>
         <%= mail_to(user.email) %>
