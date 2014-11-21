@@ -11,6 +11,8 @@ end
 class Task < ActiveRecord::Base
 
   belongs_to :project
+  has_many :comments
+
 
   include ActiveModel::Validations
   validates_with ValidateDueDate

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   resources :projects do
-    resources :tasks
+    resources :tasks do
+      resources :comments
+    end
     resources :memberships
   end
-  
+
   resources :users
 
   root "home#index", as: :main

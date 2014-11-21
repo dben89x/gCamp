@@ -2,6 +2,7 @@ Project.delete_all
 Task.delete_all
 User.delete_all
 Membership.delete_all
+Comment.delete_all
 
 50.times do
   User.create!(
@@ -17,14 +18,22 @@ end
   project = Project.create!(name: Faker::Lorem.word)
 
   rand(15).times do
-    Task.create!(
+    task = Task.create!(
       project_id: project.id,
       description: Faker::Lorem.word,
       due_date: Faker::Date.forward(23)
     )
+
+    rand(6).times do
+      Comment.create!(
+        text: Faker::Lorem.paragraph,
+        task_id: task.id,
+        user_id: User.all.sample.id
+      )
+    end
   end
 
-  users = User.all.clone
+  users = User.all
   rand(15).times do
     user = users.sample
     member = Membership.new(

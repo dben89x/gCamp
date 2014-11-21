@@ -1,22 +1,23 @@
-<table class = "table new-task-table">
-  <div class = 'page-header'>
-    <div class = "pull-right">
+<div class = 'page-header'>
+  <div class = "pull-right">
 
-      <%= link_to 'Create Task', new_project_task_path, :class => "btn btn-primary pull-right" %>
+    <%= link_to 'Create Task', new_project_task_path, :class => "btn btn-primary pull-right" %>
 
-      <%= link_clickable('All', project_tasks_path(filter: "all"), @thing1) %>
-      <%= link_clickable('Incomplete', project_tasks_path, @thing2 )  %>
-    </div>
-    <h1><%= "Tasks for #{@project.name}" %></h1>
+    <%= link_clickable('All', project_tasks_path(filter: "all"), @thing1) %>
+    <%= link_clickable('Incomplete', project_tasks_path, @thing2 )  %>
   </div>
+  <h1><%= "Tasks for #{@project.name}" %></h1>
+</div>
 
-  <ol class="breadcrumb">
-    <li><%= link_to "Projects", projects_path(@project) %></li>
-    <li><%= link_to @project.name, project_path(@project) %></li>
-    <li class="active">Tasks</li>
-  </ol><br>
+<ol class="breadcrumb">
+  <li><%= link_to "Projects", projects_path(@project) %></li>
+  <li><%= link_to @project.name, project_path(@project) %></li>
+  <li class="active">Tasks</li>
+</ol><br>
 
-  <hr>
+<hr>
+
+<table class = "table new-task-table">
   <thead>
     <tr>
       <th>
@@ -32,9 +33,9 @@
       <th>
         <h4>
           <% if @query %>
-            <%= link_to 'Complete', "#{@uri1}&sort_by=complete" %>
+            <%= link_to 'Completion Status', "#{@uri1}&sort_by=complete" %>
           <% elsif !@query %>
-            <%= link_to 'Complete', "#{@uri2}?sort_by=complete" %>
+            <%= link_to 'Completion Status', "#{@uri2}?sort_by=complete" %>
           <% end %>
         </h4>
       </th>
@@ -62,27 +63,31 @@
   <% @tasks.each do |task| %>
 
       <% due_in = due_in(task) %>
-      <tr class = "<%= row_class_for_task(task, due_in) %>">
+      <tr>
 
         <!-- description column -->
         <td>
-          <%= task.description %>
+          <%= link_to task.description, project_task_path(@project, task) %>
+          <div class="badge">
+            <%= task.comments.count %>
+          </div>
         </td>
 
         <!-- complete column -->
         <td>
           <div class = "complete_column">
             <% if task.complete %>
-              Complete
+              <%= link_to "Complete" %>
+
             <% elsif task.complete == false%>
-              Incomplete
+              <%= link_to 'Incomplete' %>
             <%end%>
           </div>
         </td>
 
         <!-- due column -->
         <td>
-          <div class = "due_column">
+          <div class = "due_column <%= row_class_for_task(task, due_in) %>">
 
             <% if task.due_date != nil %>
               <%= task.due_date.strftime('%m/%d/%Y') %>
@@ -96,28 +101,28 @@
 
         <!-- due_in column -->
         <td>
-          <div class = "due_in_column">
+          <div class = "due_in_column <%= row_class_for_task(task, due_in) %>">
 
             <% if task.due_date != nil && due_in > 0 && due_in != 0.1%>
-              <p>Due in <%= due_in %> days.</p>
+              Due in <%= due_in %> days.
 
             <% elsif task.due_date != nil && due_in && due_in == 0 %>
-              <p>Due today!</p>
+              Due today!
 
             <% elsif due_in < 0 %>
-              <p><%= due_in.abs %> days overdue.</p>
+              <%= due_in.abs %> days overdue.
             <% else %>
-              <p>No due date set.</p>
-
+              No due date set.
             <%end%>
           </div>
         </td>
 
         <!-- buttons column -->
         <td>
-          <%= link_to 'Destroy', project_task_path(@project, task), :class => "btn btn-danger pull-right", method: :delete, data: {confirm: 'Are you sure?' } %>
-          <%= link_to 'Edit', edit_project_task_path(@project, task), :class => "btn btn-warning pull-right" %>
-          <%= link_to 'Show', project_task_path(@project, task), :class => "btn btn-success pull-right"%>
+          <%= link_to 'Edit', edit_project_task_path(@project, task), :class => "btn btn-primary" %>
+          <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-remove"),
+              project_task_path(@project, task), method: :delete,
+              data: {confirm: 'Are you sure?'}%>
         </td>
 
       </tr>

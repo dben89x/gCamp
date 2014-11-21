@@ -11,7 +11,6 @@
 
   <body>
     <div>
-
       <!--navbar-->
       <div class="navbar navbar-fixed-top">
         <div class="navbar-header">
@@ -19,30 +18,27 @@
             <%=link_to "gCamp", main_path%>
           </div>
         </div>
-        <div class = 'navbar-brand pull-right' >
-          <% if current_user %>
-            <%= link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user) %>
-            <%= link_to "Sign Out", signout_path %>
-          <% else %>
-            <%= link_to 'Sign In', signin_path %>
-            <%= link_to "Sign Up", signup_path %>
-          <% end %>
-        </div>
+      <div class = 'navbar-brand pull-right' >
+        <% if current_user %>
+          <%= link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user) %>
+          | <%= link_to "Sign Out", signout_path %>
+        <% else %>
+          <%= link_to 'Sign In', signin_path %>
+          | <%= link_to "Sign Up", signup_path %>
+        <% end %>
       </div>
+    </div>
 
-
-
-      <% if notice %>
-        <div class = 'alert alert-success'>
-        <%= notice %>
-        </div>
-      <% end %>
+  <% if notice %>
+    <div class = 'alert alert-success'>
+      <%= notice %>
+    </div>
+  <% end %>
 
   <%= yield %>
     <!-- footer -->
     <footer>
       <div class = 'row'>
-
         <hr>
         <%= link_to "About", about_path %>
         <%= link_to "Terms", terms_path %>
@@ -50,25 +46,24 @@
         <%= link_to "Users", users_path%>
         <%= link_to "Projects", projects_path %>
 
+        <div class = "social_media_links pull-right">
+          <%= link_to "http://www.galvanize.it/#welcome", :target => '_blank' do%>
+            <%image_tag("gschool1.svg", width: "80em")%>
+          <%end%>
 
-      <div class = "social_media_links pull-right">
-        <%= link_to "http://www.galvanize.it/#welcome", :target => '_blank' do%>
-          <%image_tag("gschool1.svg", width: "80em")%>
-        <%end%>
+          <%= link_to "https://www.linkedin.com/profile/view?id=319703917&trk=nav_responsive_tab_profile",
+            :target => '_blank' do%>
+            <%image_tag("linkedin.png", width: "50em")%>
+          <%end%>
 
-        <%= link_to "https://www.linkedin.com/profile/view?id=319703917&trk=nav_responsive_tab_profile",
-          :target => '_blank' do%>
-          <%image_tag("linkedin.png", width: "50em")%>
-        <%end%>
+          <%= link_to "https://github.com/dben89x", :target => '_blank' do%>
+            <%image_tag("github2.png", width: "60em")%>
+          <%end%>
 
-        <%= link_to "https://github.com/dben89x", :target => '_blank' do%>
-          <%image_tag("github2.png", width: "60em")%>
-        <%end%>
-
-        <%= link_to "https://twitter.com/db89x", :target => '_blank' do%>
-          <%image_tag("twitter.png", width: "50em")%>
-        <%end%>
-      </div>
+          <%= link_to "https://twitter.com/db89x", :target => '_blank' do%>
+            <%image_tag("twitter.png", width: "50em")%>
+          <%end%>
+        </div>
 
       </footer>
     </div>

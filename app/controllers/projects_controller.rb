@@ -48,4 +48,6 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name)
   end
 
+
+
 end

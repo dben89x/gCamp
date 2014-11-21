@@ -7,9 +7,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.find(params[:id])
   end
 
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
-
-
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :update_completion]
 
   def index
     if params[:filter] == "all"
@@ -29,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @show_page = true
+    @comment = @task.comments.new
   end
 
   def new
@@ -58,14 +56,22 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_completion
+    if @project.task.complete == false
+      @project.task.complete = true
+      redirect_to project_tasks_path(@project)
+    elsif @project.task.complete == true
+      @project.task.complete = false
+      redirect_to project_tasks_path(@project)
+    end
+  end
+
   def destroy
     @task.destroy
     redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.'
   end
 
-
-
-    def task_params
-      params.require(:task).permit(:description, :complete, :due_date)
-    end
+  def task_params
+    params.require(:task).permit(:description, :complete, :due_date)
+  end
 end

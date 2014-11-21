@@ -1,36 +1,68 @@
 <!-- notice for successfully created task -->
+
 <% if notice != nil%>
   <p class = "alert alert-success"><%=notice%></p>
 <%end%>
 
-<!-- show description -->
-<p>
-  <strong>Description:</strong>
+<ol class="breadcrumb">
+  <li><%= link_to "Projects", projects_path %></li>
+  <li><%= link_to @project.name, project_path(@project) %></li>
+  <li><%= link_to "Tasks", project_tasks_path(@project) %></li>
+  <li class="active">Show</li>
+</ol><br>
 
-  <%= @task.description %>
-</p>
+<dl class = 'dl-horizontal'>
+  <h3>
+  <dt>Description:</dt>
+  <dd><%= @task.description %></dd>
+  </h3>
 
-<!-- show completion status -->
-<p>
-  <strong>Status:</strong>
-
-<%if @task.complete%>
-    Complete
-<%else%>
-    Incomplete
-<%end%>
-</p>
-
-<!-- show due date -->
-<p>
-  <strong>Due Date:</strong>
-  <% if @task.due_date %>
-    <%= @task.due_date.strftime('%m/%d/%Y') %>
-  <% else %>
-    No due date set.
+  <dt>Status:</dt>
+  <%if @task.complete%>
+      <dd>Complete</dd>
+  <%else%>
+      <dd>Incomplete</dd>
   <%end%>
-</p>
 
+  <dt>Due Date:</dt>
+  <% if @task.due_date %>
+    <dd><%= @task.due_date.strftime('%m/%d/%Y') %></dd>
+  <% else %>
+    <dd>No due date set.</dd>
+  <%end%>
+</dl><br>
 
-<%= link_to 'Edit', edit_project_task_path(@project, @task) %> |
-<%= link_to 'Back', project_tasks_path %>
+<h3>Comments</h3>
+<% @task.comments.where(:id != nil).each do |comment| %>
+  <hr>
+  <% if comment.text != nil %>
+    <div class = 'col-md-2'>
+      <%= link_to comment.user.full_name %><br>
+      <div class = 'text-muted'>
+        <%= time_ago_in_words(comment.updated_at) + " ago" %><br><br>
+      </div>
+    </div>
+
+    <div class = 'col-md-10'>
+      <%= comment.text %><br><br><br>
+    </div>
+  <% end %>
+<% end %>
+<br><br>
+
+<% if @comment.errors.present? %>
+  <% @comment.errors.full_messages.each do |message| %>
+    <div class = 'error col-md-offset-2'>
+      <%= message %>
+    </div>
+  <% end %><br>
+<% end %>
+
+<% if current_user != nil %>
+  <%= form_for [@project, @task, @comment] do |f| %>
+    <%= f.text_area :text, autofocus: true, class: 'col-md-10 col-md-offset-2' %>
+    <%= f.submit 'Add Comment', class: 'col-md-offset-2'%>
+  <% end %>
+<% end %>
+
+<%= link_to 'Edit Task', edit_project_task_path(@project, @task) %> |

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true
 
   has_many :memberships
+  has_many :comments
   has_many :owners, through: :memberships
   has_many :projects, through: :memberships
 
