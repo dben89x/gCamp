@@ -1,6 +1,3 @@
-<% if notice != nil%>
-  <p id ="notice" class = "alert alert-success"><%=notice%></p>
-<%end%>
 <div>
   <h2><%= @project.name %>
 
@@ -13,8 +10,8 @@
   <li class="active"><%= @project.name %></li>
 </ol><br>
 
-  <%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %><br>
-  <%= link_to "#{@project.memberships.count} members", project_memberships_path(@project) %>
+  <%= link_to pluralize(@project.tasks.count, "task"), project_tasks_path(@project) %><br>
+  <%= link_to pluralize(@project.memberships.count, "member"), project_memberships_path(@project) %>
 
 </div>
 

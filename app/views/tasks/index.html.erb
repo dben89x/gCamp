@@ -104,13 +104,13 @@
           <div class = "due_in_column <%= row_class_for_task(task, due_in) %>">
 
             <% if task.due_date != nil && due_in > 0 && due_in != 0.1%>
-              Due in <%= due_in %> days.
+              Due in <%= pluralize(due_in, "day") %>
 
             <% elsif task.due_date != nil && due_in && due_in == 0 %>
               Due today!
 
             <% elsif due_in < 0 %>
-              <%= due_in.abs %> days overdue.
+              <%= pluralize(due_in.abs, "day") %> overdue.
             <% else %>
               No due date set.
             <%end%>
