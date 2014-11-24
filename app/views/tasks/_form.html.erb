@@ -4,12 +4,12 @@
   <div class = "form-horizontal" role="form">
     <%= render '/errors.html.erb', model: @task %>
 
-    <%= f.label :description, :class=>"label col-md-2" %>
-    <%= f.text_field :description, :autofocus=>true, :class=>"form-control" %>
+    <%= f.label :description %>
+    <%= f.text_field :description, :autofocus=>true, class: "form-control", placeholder: "Enter description" %>
     <br><br>
 
-    <%= f.label :due_date, :class =>"label col-md-2" %>
-    <%= f.date_field :due_date, :class=>'form-control' %>
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date, class: 'form-control' %>
     <br>
 
     <%if @edit_page%>
@@ -17,6 +17,6 @@
       <%= f.label :complete %><br><br>
     <%end%>
 
-    <%= f.submit :class=>"btn btn-submit" %><br><br>
+    <%= f.submit class: "btn btn-submit" %><br><br>
   </div>
 <% end %>

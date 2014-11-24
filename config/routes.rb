@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  root "home#index", as: :main
+  root "home#index"
   get '/about' => 'about#index', as: :about
   get '/terms' => 'terms#index', as: :terms
   get '/faq' => 'faq#index', as: :faq

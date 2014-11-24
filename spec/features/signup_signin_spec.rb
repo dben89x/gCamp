@@ -4,7 +4,7 @@ feature 'signup' do
 
   scenario 'User signs up signs out and signs back in and signs out again' do
 
-    visit main_path
+    visit root_path
     click_on "Sign Up"
 
     fill_in "First name", with: "Doug"
