@@ -8,7 +8,6 @@
   </div>
   <h1><%= "Tasks for #{@project.name}" %></h1>
 </div>
-<%= pluralize(Comment.count, 'comment') %>
 
 <ol class="breadcrumb">
   <li><%= link_to "Projects", projects_path(@project) %></li>
