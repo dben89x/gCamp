@@ -3,10 +3,8 @@
   <div class = "row">
     <div class="well col-md-4 col-md-offset-4">
 
-      <!-- titles -->
       <h2> <%= title %> </h2>
 
-      <!-- signin_error -->
       <% if @sign_in_error %>
         <div class = 'error'>
           <br><p><%= @sign_in_error %></p>
@@ -14,15 +12,12 @@
       <% end %>
       <br>
 
-      <!-- errors -->
       <% if path != signin_path %>
         <% if path == signup_path or path == users_path or path == user_path  %>
           <%= render '/errors.html.erb', model: model %>
         <% end %>
       <% end %>
 
-
-      <!-- fields -->
       <% if path != signin_path %>
         <%= f.label :first_name %>
         <%= f.text_field :first_name, :autofocus=>true, class: "form-control",
@@ -48,12 +43,11 @@
       <% end %>
       <br>
 
-      <!-- buttons -->
-        <%= f.submit button, class: 'btn btn-submit' %>
+      <%= f.submit button, class: 'btn btn-submit' %>
 
-        <% if @edit_user %>
-          <%= link_to 'Delete User', user_path(@user), method: :delete, class: 'btn btn-danger' %>
-        <% end %>
+      <% if @edit_user %>
+        <%= link_to 'Delete User', user_path(@user), method: :delete, class: 'btn btn-danger' %>
+      <% end %>
 
     </div>
   </div>

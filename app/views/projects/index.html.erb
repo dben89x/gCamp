@@ -2,6 +2,8 @@
   Projects
   <%= link_to "Create Project", new_project_path, :class => 'btn btn-primary pull-right' %>
 </h1>
+
+<%= pluralize(Comment.count, 'comment') %>
 <table class = 'table'>
   <thead>
     <tr>

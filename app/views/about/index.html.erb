@@ -1,2 +1,8 @@
 <h1>About</h1>
 <p>Get organized and increase productivity with your team.</p>
+<h3>Check out our killer stats!!!!!!!</h3>
+<br>
+<%= "There's currently #{pluralize(Project.count, 'project')}, with
+    #{pluralize(Task.count, 'task')}.  #{Membership.count} of our
+    #{pluralize(User.count, 'user')} are members of these tasks, and we have
+    accumulated #{pluralize(Comment.count, 'comment')}." %>
