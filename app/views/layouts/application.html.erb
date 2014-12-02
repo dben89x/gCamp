@@ -9,34 +9,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
   </head>
 
-  <body>
-    <div>
+  <body class='container'>
       <!--navbar-->
       <div class="navbar navbar-fixed-top">
-        <div class="navbar-header">
-          <div class="navbar-brand">
-            <%=link_to "gCamp", root_path, class: "gcamp-brand"%>
-          </div>
+        <div class="container">
+        <div class = 'navbar-header'>
+
+        <%=link_to "gCamp", root_path, class: "gcamp-brand"%>
         </div>
-      <div class = 'navbar-brand pull-right' >
-        <% if current_user %>
-          <%= link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user) %>
-          | <%= link_to "Sign Out", signout_path %>
-        <% else %>
-          <%= link_to 'Sign In', signin_path %>
-          | <%= link_to "Sign Up", signup_path %>
-        <% end %>
+        <ul class='navbar-nav'>
+          <li class="dropdown list-unstyled">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              My Projects
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class = 'navbar-right' >
+          <% if current_user %>
+            <%= link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user) %>
+            | <%= link_to "Sign Out", signout_path %>
+          <% else %>
+            <%= link_to 'Sign In', signin_path %>
+            | <%= link_to "Sign Up", signup_path %>
+          <% end %>
+        </div>
       </div>
     </div>
 
-  <% if notice %>
-    <div class = 'alert alert-success'>
-      <%= notice %>
-    </div>
-  <% end %>
+    <% if notice %>
+      <div class = 'alert alert-success'>
+        <%= notice %>
+      </div>
+    <% end %>
 
-  <%= yield %>
+    <%= yield %>
     <footer>
+
       <hr>
       <%= link_to "About", about_path %>
       <%= link_to "Terms", terms_path %>

@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_action do
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.find(params[:task_id])
+    @task = Task.find(params[:task_id])
   end
 
   def create
@@ -9,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.task_id = @task.id
     if @comment.save
-      redirect_to project_task_path(@project, @task)
+      redirect_to project_task_path(@task.project_id, @task)
     else
       render 'tasks/show'
     end

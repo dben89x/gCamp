@@ -52,8 +52,9 @@
 <% end %>
 
 <% if current_user != nil %>
-  <%= form_for [@project, @task, @comment] do |f| %>
-    <%= f.text_area :text, autofocus: true, class: 'col-md-offset-2 col-md-10 form-control' %>
+  <%= form_for @comment do |f| %>
+    <%= hidden_field_tag :task_id, @task.id %>
+    <%= f.text_area :text, autofocus: true, class: 'col-md-offset-2 form-control' %>
     <%= f.submit 'Add Comment', class: 'col-md-offset-2 btn btn-submit'%>
   <% end %>
 <% end %>

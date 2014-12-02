@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   resources :projects do
-    resources :tasks do
-      resources :comments
-    end
+    resources :tasks
     resources :memberships
   end
 
@@ -13,14 +11,13 @@ Rails.application.routes.draw do
   get '/about' => 'about#index', as: :about
   get '/terms' => 'terms#index', as: :terms
   get '/faq' => 'faq#index', as: :faq
-
+  post '/comments' => 'comments#create'
 
   get '/signin' => 'authenticates#signin'
   post '/signin' => 'authenticates#create'
 
   get '/signup' => 'registers#signup'
   post '/signup' => 'registers#create'
-
 
   get '/signout' => 'authenticates#destroy'
 
