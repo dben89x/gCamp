@@ -1,0 +1,35 @@
+<%= form_for(model, url: path) do |f| %>
+
+  <h1> <%= title %> </h1>
+<br><br>
+  <div class='row'>
+
+    <div class='col-md-8'>
+
+      <dl class = 'dl-horizontal'>
+        <dd><%= render '/errors.html.erb', model: model %></dd>
+        <dt><%= f.label :first_name %></dt>
+        <dd><%= f.text_field :first_name, :autofocus=>true, class: "form-control"%></dd><br>
+
+        <dt><%= f.label :last_name %></dt>
+        <dd><%= f.text_field :last_name, class: "form-control"%></dd><br>
+
+        <dt><%= f.label :email %></dt>
+        <dd><%= f.email_field :email, class: "form-control"%></dd><br>
+
+        <dt><%= f.label :password %></dt>
+        <dd><%= f.password_field :password, class: "form-control"%></dd><br>
+
+        <dt><%= f.label :password_confirmation%></dt>
+        <dd><%= f.password_field :password_confirmation, class: "form-control"%></dd><br>
+
+        <dd>
+        <%= f.submit button, class: 'btn btn-submit' %>
+        <%= link_to 'Cancel', users_path, class: 'btn btn-default' %>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+
+<% end %>

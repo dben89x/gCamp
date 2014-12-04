@@ -1,4 +1,4 @@
-class RegistersController<ApplicationController
+class RegistersController<PublicController
 
   def signup
     @signup = true

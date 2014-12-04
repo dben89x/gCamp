@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action do
     @task = Task.find(params[:task_id])
+    @project = Project.find(@task.project_id)
   end
 
   def create

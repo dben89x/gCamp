@@ -1,0 +1,37 @@
+<%= form_for model, url: path, html: {class: 'form-horizontal'} do |f| %>
+
+  <div class = "row">
+    <div class="well col-md-4 col-md-offset-4">
+
+      <h2> <%= title %> </h2>
+
+
+      <div class='form-group'>
+        <%= render '/errors.html.erb', model: model %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, :autofocus=>true, class: "form-control",
+            placeholder: "Enter first name" %>
+
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: "form-control",
+            placeholder: "Enter last name"%>
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control",
+            placeholder: "Enter email address" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control",
+            placeholder: "Enter password" %>
+
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: "form-control",
+              placeholder: "Confirm password" %>
+          <br>
+
+          <%= f.submit button, class: 'btn btn-submit' %>
+        </div>
+    </div>
+  </div>
+
+<% end %>

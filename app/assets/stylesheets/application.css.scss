@@ -18,6 +18,14 @@ body{
   height: 300px;
 }
 
+.dl-horizontal dt {
+  overflow: visible;
+}
+// 
+// .something {
+//   width: 84%;
+// }
+
 .panel {
   p, ul {
     margin:20px 60px;

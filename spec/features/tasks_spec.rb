@@ -31,7 +31,7 @@ feature 'Tasks' do
   end
 
   scenario 'User enters invalid fields, then destroys task' do
-    visit new_task_path
+    visit new_project_task_path
 
     fill_in "Description", with: ""
     fill_in "Due date", with: ""

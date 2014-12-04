@@ -1,4 +1,4 @@
-<body class = "homepage">
+<% @home = true %>
   <!--jumbotron-->
   <div class="jumbotron gcamp-jumbo">
     <center>
@@ -7,10 +7,6 @@
     </center>
   </div>
 
-  <!--rows -->
-  <div class="panels_and_images">
-
-    <!--images row-->
     <div class="row">
 
       <div class="col-md-4 img"> <%= image_tag "tasks.png", class: "img-responsive"%></div>
@@ -51,15 +47,9 @@
       </div>
     </div>
 
-    <!-- quotes -->
-    <div class="quotes">
-
       <% @quotes.each do |quote|%>
         <center>
           <p><%=quote.text%></p>
           <p><%=quote.author%></p>
         </center>
       <%end%>
-    </div>
-  </div>
-</body>

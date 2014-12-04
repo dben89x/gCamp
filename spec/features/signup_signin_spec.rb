@@ -21,6 +21,11 @@ feature 'signup' do
 
     click_on "Sign In"
 
+    fill_in "Email", with: ""
+    fill_in "Password", with: ""
+    click_on "Sign In!"
+    expect(page).to have_content("Username / password combination is invalid")
+    
     fill_in "Email", with: "d@b.com"
     fill_in "Password", with: "1234"
     click_on "Sign In!"

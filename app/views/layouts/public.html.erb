@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gcamp</title>
+  <%= stylesheet_link_tag 'application'%>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application" %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body class="<% if @home %>homepage<% end %>" >
+  <div class = 'container'>
+
+    <!--navbar-->
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class = 'navbar-header'>
+
+          <%=link_to "gCamp", root_path, class: "gcamp-brand"%>
+        </div>
+
+        <div class = 'navbar-right' >
+          <% if current_user %>
+          <%= link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user) %>
+          | <%= link_to "Sign Out", signout_path %>
+          <% else %>
+          <%= link_to 'Sign In', signin_path %>
+          | <%= link_to "Sign Up", signup_path %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if notice %>
+    <div class = 'alert alert-success'>
+      <%= notice %>
+    </div>
+    <% end %>
+
+    <%= yield %>
+    <footer>
+
+      <hr>
+      <div class='text-center'>
+        <%= link_to "About", about_path %>
+        <%= link_to "Terms", terms_path %>
+        <%= link_to "FAQs", faq_path %>
+      </div>
+
+    </footer>
+  </div>
+</body>
+
+</html>

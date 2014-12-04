@@ -1,2 +1,2 @@
-class AboutController < ApplicationController
+class AboutController < PublicController
 end

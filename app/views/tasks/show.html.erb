@@ -8,7 +8,7 @@
 <dl class = 'dl-horizontal'>
   <h3>
   <dt>Description:</dt>
-  <%= link_to 'Edit Task', edit_project_task_path(@project, @task), class: 'btn btn-info pull-right' %>
+  <%= link_to 'Edit', edit_project_task_path(@project, @task), class: 'btn btn-info pull-right' %>
   <dd><%= @task.description %></dd>
   </h3>
 
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-      <%= comment.text %><br><br><br>
+    <%= comment.text %><br><br><br>
   <% end %>
 <% end %>
 <br><br>
@@ -52,9 +52,17 @@
 <% end %>
 
 <% if current_user != nil %>
-  <%= form_for @comment do |f| %>
+  <%= form_for @comment, html: {class: 'form-horizontal'} do |f| %>
     <%= hidden_field_tag :task_id, @task.id %>
-    <%= f.text_area :text, autofocus: true, class: 'col-md-offset-2 form-control' %>
-    <%= f.submit 'Add Comment', class: 'col-md-offset-2 btn btn-submit'%>
+    <div class='form-group'>
+      <div class='col-md-10 col-md-offset-2'>
+        <%= f.text_area :text, autofocus: true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <div class='col-md-10 col-md-offset-2'>
+        <%= f.submit 'Add Comment', class: 'btn btn-primary'%>
+      </div>
+    </div>
   <% end %>
 <% end %>
