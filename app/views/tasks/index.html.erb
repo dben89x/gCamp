@@ -33,9 +33,9 @@
       <th>
         <h4>
           <% if @query %>
-            <%= link_to 'Completion Status', "#{@uri1}&sort_by=complete" %>
+            <%= link_to 'Completion role', "#{@uri1}&sort_by=complete" %>
           <% elsif !@query %>
-            <%= link_to 'Completion Status', "#{@uri2}?sort_by=complete" %>
+            <%= link_to 'Completion role', "#{@uri2}?sort_by=complete" %>
           <% end %>
         </h4>
       </th>

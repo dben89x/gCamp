@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dben89x/gCamp.svg?branch=master)](https://travis-ci.org/dben89x/gCamp)
+[![Build status](https://travis-ci.org/dben89x/gCamp.svg?branch=master)](https://travis-ci.org/dben89x/gCamp)
 
 ---Heroku Link:
 ---serene-island-2792.herokuapp.com/

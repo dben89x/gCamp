@@ -38,7 +38,7 @@
 #     member = Membership.new(
 #       user_id: user.id,
 #       project_id: project.id,
-#       status: ["Member", "Owner"].sample,
+#       role: ["Member", "Owner"].sample,
 #     )
 #     if member.save
 #     end
@@ -55,45 +55,49 @@ admin = User.create!(
 first_name: 'Admin',
 last_name: 'User',
 email: 'admin@example.com',
-password: 'password'
+password: 'password',
+admin: true
 )
 
 owner = User.create!(
 first_name: 'Owner',
 last_name: 'User',
 email: 'owner@example.com',
-password: 'password'
+password: 'password',
+admin: false
 )
 
 member = User.create!(
 first_name: 'Member',
 last_name: 'User',
 email: 'member@example.com',
-password: 'password'
+password: 'password',
+admin: false
 )
 
 user = User.create!(
 first_name: 'Basic',
 last_name: 'User',
 email: 'user@example.com',
-password: 'password'
+password: 'password',
+admin: false
 )
 
 multiple_owners = Project.create!(name: 'Multiple Owners')
 Membership.create!(
 project: multiple_owners,
 user: owner,
-role: 'owner'
+role: 'Owner'
 )
 Membership.create!(
 project: multiple_owners,
 user: user,
-role: 'owner'
+role: 'Owner'
 )
 Membership.create!(
 project: multiple_owners,
 user: member,
-role: 'member'
+role: 'Member'
 )
 
 task1 = Task.create!(
@@ -112,24 +116,24 @@ due_date: 5.days.from_now
   Comment.create!(
   task: task1,
   user: owner,
-  body: Faker::Lorem.sentence
+  text: Faker::Lorem.sentence
   )
 end
 
 Comment.create!(
 task: task2,
 user: member,
-body: Faker::Lorem.sentence
+text: Faker::Lorem.sentence
 )
 
 single_owner = Project.create!(name: 'Single Owner')
 Membership.create!(
 project: single_owner,
 user: owner,
-role: 'owner'
+role: 'Owner'
 )
 Membership.create!(
 project: single_owner,
 user: member,
-role: 'member'
+role: 'Member'
 )

@@ -1,14 +1,15 @@
 <% @project.users.each do |user|%>
-  <% user.memberships.each do |member| %>
+  <% user.memberships.where(project_id: @project.id).each do |member| %>
     <%= form_for [@project, member] do |f| %>
       <div class='form-inline'>
         <%= link_to user.full_name, user_path(user), class: 'col-md-2' %>
-        <%= f.select :status, options_for_select(['Owner', 'Member']),
-            {include_blank: false}, {class: "form-control"}%>
+        <%= f.select :role, ['Owner', 'Member'], {}, {class: "form-control"}%>
         <%= f.submit class: "btn btn-primary" %>
-        <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-remove"),
-            project_membership_path(@project, member), method: :delete,
-            data: {confirm: 'Are you sure?'}%>
+        <% unless @project.memberships.where(role: 'owner').count == 1 and member.role == 'owner' %>
+          <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-remove"),
+              project_membership_path(@project, member), method: :delete,
+              data: {confirm: 'Are you sure?'}%>
+        <% end %>
       </div><br>
     <% end %>
   <% end %>

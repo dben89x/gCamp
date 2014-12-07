@@ -1,6 +1,8 @@
 <h1>
   <%= @user.full_name %>
-  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary pull-right' %>
+  <% if current_user == @user %>
+    <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary pull-right' %>
+  <% end %>
 </h1>
 
 <dl class = 'dl-horizontal'>
@@ -10,6 +12,8 @@
   <dt>Last Name:</dt>
   <dd><%= @user.last_name %></dd>
 
-  <dt>E-Mail:</dt>
-  <dd><%= mail_to(@user.email) %></dd><br>
+  <% if current_user == @user %>
+    <dt>E-Mail:</dt>
+    <dd><%= mail_to(@user.email) %></dd><br>
+  <% end %>
 </dl>

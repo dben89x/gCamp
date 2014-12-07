@@ -2,5 +2,7 @@
 
 <h1>Edit Project</h1>
 
-<%= render 'form' %>
+<% if valid_owner %>
+  <%= render 'form' %>
+<% end %>
 <!-- <%= link_to 'To Index', projects_path %> -->

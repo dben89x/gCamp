@@ -23,10 +23,17 @@
         <dt><%= f.label :password_confirmation%></dt>
         <dd><%= f.password_field :password_confirmation, class: "form-control"%></dd><br>
 
+        <% if current_user.admin %>
+          <dd>
+            <%= f.check_box :admin %>
+            <%= f.label :admin %>
+          </dd>
+        <% end %>
+
         <dd>
-        <%= f.submit button, class: 'btn btn-submit' %>
+        <%= f.submit class: 'btn btn-submit' %>
         <%= link_to 'Cancel', users_path, class: 'btn btn-default' %>
-      </dd>
+        </dd>
     </dl>
   </div>
 </div>

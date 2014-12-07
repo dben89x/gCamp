@@ -20,7 +20,7 @@ class MembershipsController < ApplicationController
 
     if @membership.save
       redirect_to project_memberships_path(@project), notice:
-        "#{@membership.user.full_name} was added successfully to #{@membership.status}."
+        "#{@membership.user.full_name} was added successfully to #{@membership.role}."
     else
       render :index
     end
@@ -29,7 +29,7 @@ class MembershipsController < ApplicationController
   def update
     if @membership.update(membership_params)
       redirect_to project_memberships_path(@project, @membership), notice:
-        "#{@membership.user.full_name} was updated successfully to #{@membership.status}."
+        "#{@membership.user.full_name} was updated successfully to #{@membership.role}."
     else
       render :index
     end
@@ -42,7 +42,7 @@ class MembershipsController < ApplicationController
   end
 
   def membership_params
-    params.require(:membership).permit(:project_id, :user_id, :status)
+    params.require(:membership).permit(:project_id, :user_id, :role)
   end
 
 end

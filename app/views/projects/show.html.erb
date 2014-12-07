@@ -1,7 +1,8 @@
 <div>
   <h2><strong><%= @project.name %></strong>
-
-  <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-primary pull-right' %>
+  <% if valid_owner %>
+    <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-primary pull-right' %>
+  <% end %>
 </h2>
 
 <ol class="breadcrumb">
@@ -11,13 +12,15 @@
 
   <%= link_to pluralize(@project.tasks.count, "task"), project_tasks_path(@project) %><br>
   <%= link_to pluralize(@project.memberships.count, "member"), project_memberships_path(@project) %>
-
-<div class = 'well'>
-  <strong>Delete Project</strong><br><br>
-  <%= "Deleting this project will also delete #{pluralize(@project.memberships.count, 'comment')},
-      #{pluralize(@project.tasks.count, 'task')}, and all associated comments." %><br><br>
-  <%= link_to 'Delete project', @project, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
-</div>
+  
+<% if valid_owner %>
+  <div class = 'well'>
+    <strong>Delete Project</strong><br><br>
+    <%= "Deleting this project will also delete #{pluralize(@project.memberships.count, 'comment')},
+        #{pluralize(@project.tasks.count, 'task')}, and all associated comments." %><br><br>
+    <%= link_to 'Delete project', @project, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+  </div>
+<% end %>
 </div>
 
   <!-- <%= link_to 'To Index', projects_path %> -->
