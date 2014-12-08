@@ -12,15 +12,9 @@
   <div class = "form-horizontal" role="form">
 
     <%= f.label :name%>
-    <%= f.text_field :name, class: 'col-sm-4 form-control', :autofocus => true  %><br><br>
+    <%= f.text_field :name, class: 'form-control', :autofocus => true %><br>
 
-      <% if @new_project %>
-        <%= f.submit 'Create Project', class: 'btn btn-primary' %>
-      <% end %>
+    <%= f.submit class: 'btn btn-primary' %>
 
-      <% if @edit_project %>
-        <%= f.submit 'Update Project', class:'btn btn-primary' %>
-      <% end %>
-    </div>
   </div>
 <% end %>

@@ -3,7 +3,6 @@
   <h1> <%= title %> </h1>
   <div class = "form-horizontal" role="form">
     <%= render '/errors.html.erb', model: @task %>
-
     <%= f.label :description %>
     <%= f.text_field :description, :autofocus=>true, class: "form-control", placeholder: "Enter description" %>
     <br><br>

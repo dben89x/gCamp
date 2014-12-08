@@ -1,22 +1,15 @@
-class ValidateDueDate < ActiveModel::Validator
+class Task < ActiveRecord::Base
+  validate :due_date_cannot_be_in_the_past, on: :create
 
-  def validate(task)
-    if task.due_date != nil && task.due_date < Date.today
-      task.errors[:task] << 'due date must be after today'
+  def due_date_cannot_be_in_the_past
+    if due_date != nil && due_date < Date.today
+      errors.add(:due_date, 'must be after today')
     end
   end
-
-end
-
-class Task < ActiveRecord::Base
 
   belongs_to :project
   has_many :comments, dependent: :destroy
 
-
-  include ActiveModel::Validations
-  validates_with ValidateDueDate
   validates :description, presence: true
-  validates :due_date, presence: true
 
 end

@@ -8,4 +8,12 @@ module ApplicationHelper
     end
     valid_user
   end
+
+  def hide_current_page_link(path, link)
+    unless current_page?("/#{path}")
+      content_tag :a, :href=>"/#{path}" do
+        link 
+      end
+    end
+  end
 end

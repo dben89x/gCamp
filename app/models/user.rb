@@ -3,9 +3,13 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  before_save do |user|
+    user.email = email.downcase
+  end
+
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: {case_sensitive: false}
   validates :password, presence: true
 
   has_many :memberships, dependent: :destroy

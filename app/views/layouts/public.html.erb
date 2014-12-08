@@ -43,9 +43,9 @@
 
       <hr>
       <div class='text-center'>
-        <%= link_to "About", about_path %>
-        <%= link_to "Terms", terms_path %>
-        <%= link_to "FAQs", faq_path %>
+        <%= hide_current_page_link('about', 'About')%>
+        <%= hide_current_page_link('terms', 'Terms')%>
+        <%= hide_current_page_link('faq', 'FAQs')%>
       </div>
 
     </footer>

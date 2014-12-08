@@ -59,11 +59,11 @@
       <footer>
 
         <hr>
-          <%= link_to "About", about_path %>
-          <%= link_to "Terms", terms_path %>
-          <%= link_to "FAQs", faq_path %>
-          <%= link_to "Users", users_path%>
-          <%= link_to "My Projects", projects_path %>
+        <%= hide_current_page_link('about', 'About')%>
+        <%= hide_current_page_link('terms', 'Terms')%>
+        <%= hide_current_page_link('faq', 'FAQs')%>
+        <%= hide_current_page_link('users', 'Users')%>
+        <%= hide_current_page_link('projects', 'My Projects')%>
 
         <div class = "social_media_links pull-right">
           <%= link_to "http://www.galvanize.it/#welcome", :target => '_blank' do%>

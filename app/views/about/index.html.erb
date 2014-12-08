@@ -1,8 +1,28 @@
 <h1>About</h1>
-<p>Get organized and increase productivity with your team.</p>
-<h3>Check out our killer stats!!!!!!!</h3>
-<br>
-<%= "There's currently #{pluralize(Project.count, 'project')}, with
-    #{pluralize(Task.count, 'task')}.  #{Membership.count} of our
-    #{pluralize(User.count, 'user')} are members of these tasks, and we have
-    accumulated #{pluralize(Comment.count, 'comment')}." %>
+
+<div class='row'>
+  <%= image_tag "inquisitive-turkey.jpg", height: '350px', class: 'col-md-4'%>
+  <p>
+    We are dedicated to the makers, the creators, the risktakers.
+    We wake up in the middle of the night and furiously write down ideas
+    about how to make your online life better.
+  </p>
+  <p>
+    When we're not hard at work, we're hard at play -
+    we're the loud ones in the bar, and we're always the ones shutting the place down.
+    Human communication and collaboration is what drives us,
+    and infuses every feature of gCamp.
+  </p>
+</div>
+
+<div class='row'>
+  <div class='container'>
+  <h3>Check out our killer stats!!!!!!!</h3>
+  <br>
+  <%= "Currently #{pluralize(Project.count, 'project')}, with
+      #{pluralize(Task.count, 'task')}.  #{Membership.count} of our
+      #{pluralize(User.count, 'user')} are members of these tasks, and we have
+      accumulated #{pluralize(Comment.count, 'comment')}." %>
+  </div>
+</div>
+<% p current_page?(about_path) %>
