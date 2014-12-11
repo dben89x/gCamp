@@ -1,7 +1,20 @@
 <div class = 'page-header'>
   <div class = "pull-right">
+    <% if valid_owner %>
+    <div class='dropdown'>
 
-    <%= link_to 'Create Task', new_project_task_path, :class => "btn btn-primary pull-right" %>
+      <button class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-cog"></span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown dropdown-menu list-unstyled" role="menu">
+        <li><a href="#"><%= link_to 'Settings', projects_path %></a></li>
+        <li><a href="#"><%= link_to 'Add/Remove Members', project_memberships_path(@project) %></a></li>
+      </ul>
+
+    </div>
+    <% end %>
+    <%= link_to 'New Task', new_project_task_path, :class => "btn btn-primary pull-right" %>
 
     <%= link_clickable('All', project_tasks_path(filter: "all"), @thing1) %>
     <%= link_clickable('Incomplete', project_tasks_path, @thing2 )  %>
@@ -32,11 +45,7 @@
 
       <th>
         <h4>
-          <% if @query %>
-            <%= link_to 'Completion role', "#{@uri1}&sort_by=complete" %>
-          <% elsif !@query %>
-            <%= link_to 'Completion role', "#{@uri2}?sort_by=complete" %>
-          <% end %>
+          Status
         </h4>
       </th>
 
@@ -77,10 +86,9 @@
         <td>
           <div class = "complete_column">
             <% if task.complete %>
-              <%= link_to "Complete" %>
-
+              Complete
             <% elsif task.complete == false%>
-              <%= link_to 'Incomplete' %>
+              Incomplete
             <%end%>
           </div>
         </td>

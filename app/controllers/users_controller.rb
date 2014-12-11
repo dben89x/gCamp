@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :valid_user, only: [:edit, :update, :destroy]
+
+  def valid_user
+    if @user == current_user or current_user.admin
+      true
+    else
+      raise AccessDenied
+    end
+  end
 
   def index
     @users = User.all
@@ -44,6 +53,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :tracker_token)
   end
 end

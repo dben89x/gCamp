@@ -1,5 +1,10 @@
-
 class Membership < ActiveRecord::Base
+
+  def validate_owner_presence
+    
+  end
+
+  validate :validate_owner_presence, on: :destroy
 
   belongs_to :user
   belongs_to :project

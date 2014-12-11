@@ -6,25 +6,16 @@ require 'rails_helper'
 #   end
 # end
 
-describe ProjectsController do
-
+describe UsersController do
   describe '#index' do
-    before :all do
-    end
-
-    it "renders the index template" do
-      get :index
-      expect(response).to render_template("index")
-    end
-
     it 'allows logged in users to see only their projects' do
+      p User.all
       get :index
-      expect(@users).to eq(@user)
+
     end
 
     it 'redirects to sign-in page when not logged in' do
-      get :index
-      expect(response).to redirect_to(signin_path)
+
     end
   end
 

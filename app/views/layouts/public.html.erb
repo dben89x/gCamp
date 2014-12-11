@@ -1,55 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Gcamp</title>
-  <%= stylesheet_link_tag 'application'%>
-  <%= csrf_meta_tags %>
-  <%= javascript_include_tag "application" %>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-</head>
+  <head>
+    <title>Gcamp</title>
+    <%= stylesheet_link_tag 'application'%>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application" %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  </head>
 
-<body class="<% if @home %>homepage<% end %>" >
-  <div class = 'container'>
+  <body class="<% if @home %> homepage <% end %>" >
+    <div class = 'container'>
 
-    <!--navbar-->
-    <div class="navbar navbar-fixed-top">
-      <div class="container">
-        <div class = 'navbar-header'>
+      <!--navbar-->
+      <div class="navbar navbar-fixed-top">
+        <div class="container">
+          <div class = 'navbar-header'>
 
-          <%=link_to "gCamp", root_path, class: "gcamp-brand"%>
+            <%=link_to "gCamp", root_path, class: "gcamp-brand"%>
+          </div>
+
+          <div class = 'navbar-right' >
+            <% if current_user %>
+            <%= link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user) %>
+            | <%= link_to "Sign Out", signout_path %>
+            <% else %>
+            <%= link_to 'Sign In', signin_path %>
+            | <%= link_to "Sign Up", signup_path %>
+            <% end %>
+          </div>
         </div>
+      </div>
 
-        <div class = 'navbar-right' >
+      <% if notice %>
+        <div class = 'alert alert-success'>
+          <%= notice %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+      <footer>
+
+        <hr>
+          <%= link_to_unless_current('About', about_path) %>
+          <%= link_to_unless_current('Terms', terms_path) %>
+          <%= link_to_unless_current('FAQs', faq_path) %>
           <% if current_user %>
-          <%= link_to (current_user.first_name + ' ' + current_user.last_name), user_path(current_user) %>
-          | <%= link_to "Sign Out", signout_path %>
-          <% else %>
-          <%= link_to 'Sign In', signin_path %>
-          | <%= link_to "Sign Up", signup_path %>
+            <%= link_to('My Projects', projects_path) %>
           <% end %>
+
+        <div class = "social_media_links pull-right">
+          <%= link_to "http://www.galvanize.it/#welcome", :target => '_blank' do%>
+          <%image_tag("gschool1.svg", width: "80em")%>
+          <%end%>
+
+          <%= link_to "https://www.linkedin.com/profile/view?id=319703917&trk=nav_responsive_tab_profile",
+          :target => '_blank' do%>
+          <%image_tag("linkedin.png", width: "50em")%>
+          <%end%>
+
+          <%= link_to "https://github.com/dben89x", :target => '_blank' do%>
+          <%image_tag("github2.png", width: "60em")%>
+          <%end%>
+
+          <%= link_to "https://twitter.com/db89x", :target => '_blank' do%>
+          <%image_tag("twitter.png", width: "50em")%>
+          <%end%>
         </div>
-      </div>
+      </footer>
     </div>
-
-    <% if notice %>
-    <div class = 'alert alert-success'>
-      <%= notice %>
-    </div>
-    <% end %>
-
-    <%= yield %>
-    <footer>
-
-      <hr>
-      <div class='text-center'>
-        <%= hide_current_page_link('about', 'About')%>
-        <%= hide_current_page_link('terms', 'Terms')%>
-        <%= hide_current_page_link('faq', 'FAQs')%>
-      </div>
-
-    </footer>
-  </div>
-</body>
+  </body>
 
 </html>

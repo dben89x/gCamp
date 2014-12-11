@@ -1,7 +1,5 @@
 <% @edit_user = true %>
-<% if current_user == @user %>
   <%= render 'form',
     title: 'Edit User',
     path: user_path,
     model: @user %>
-<% end %>

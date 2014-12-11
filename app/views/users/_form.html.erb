@@ -3,8 +3,7 @@
   <h1> <%= title %> </h1>
 <br><br>
   <div class='row'>
-
-    <div class='col-md-8'>
+    <div class='col-md-6'>
 
       <dl class = 'dl-horizontal'>
         <dd><%= render '/errors.html.erb', model: model %></dd>
@@ -17,11 +16,16 @@
         <dt><%= f.label :email %></dt>
         <dd><%= f.email_field :email, class: "form-control"%></dd><br>
 
-        <dt><%= f.label :password %></dt>
-        <dd><%= f.password_field :password, class: "form-control"%></dd><br>
+        <% if !@edit_user %>
+          <dt><%= f.label :password %></dt>
+          <dd><%= f.password_field :password, class: "form-control"%></dd><br>
 
-        <dt><%= f.label :password_confirmation%></dt>
-        <dd><%= f.password_field :password_confirmation, class: "form-control"%></dd><br>
+          <dt><%= f.label :password_confirmation%></dt>
+          <dd><%= f.password_field :password_confirmation, class: "form-control"%></dd><br>
+        <% end %>
+
+        <dt><%= f.label 'Pivotal Tracker Token' %></dt>
+        <dd><%= f.text_field :tracker_token, class: "form-control" %></dd><br>
 
         <% if current_user.admin %>
           <dd>

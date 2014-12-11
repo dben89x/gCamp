@@ -17,7 +17,7 @@
         <div class="container">
           <div class = 'navbar-header'>
 
-          <%=link_to "gCamp", root_path, class: "gcamp-brand"%>
+          <%=link_to "gCamp", projects_path, class: "gcamp-brand"%>
           </div>
           <ul class='navbar-nav'>
             <li class="dropdown list-unstyled">
@@ -34,6 +34,9 @@
                 <li class="divider"></li>
                 <li><a href="#"><%= link_to 'New Project', new_project_path %></a></li>
               </ul>
+            </li>
+            <li class="dropdown list-unstyled">
+              <%= link_to_unless_current('Users', users_path) %>
             </li>
           </ul>
 
@@ -59,30 +62,13 @@
       <footer>
 
         <hr>
-        <%= hide_current_page_link('about', 'About')%>
-        <%= hide_current_page_link('terms', 'Terms')%>
-        <%= hide_current_page_link('faq', 'FAQs')%>
-        <%= hide_current_page_link('users', 'Users')%>
-        <%= hide_current_page_link('projects', 'My Projects')%>
-
-        <div class = "social_media_links pull-right">
-          <%= link_to "http://www.galvanize.it/#welcome", :target => '_blank' do%>
-            <%image_tag("gschool1.svg", width: "80em")%>
-          <%end%>
-
-          <%= link_to "https://www.linkedin.com/profile/view?id=319703917&trk=nav_responsive_tab_profile",
-            :target => '_blank' do%>
-            <%image_tag("linkedin.png", width: "50em")%>
-          <%end%>
-
-          <%= link_to "https://github.com/dben89x", :target => '_blank' do%>
-            <%image_tag("github2.png", width: "60em")%>
-          <%end%>
-
-          <%= link_to "https://twitter.com/db89x", :target => '_blank' do%>
-            <%image_tag("twitter.png", width: "50em")%>
-          <%end%>
+        <div class='text-center'>
+          <%= link_to_unless_current('Home', root_path) %>
+          <%= link_to_unless_current('About', about_path) %>
+          <%= link_to_unless_current('Terms', terms_path) %>
+          <%= link_to_unless_current('FAQs', faq_path) %>
         </div>
+
       </footer>
     </div>
   </body>

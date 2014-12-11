@@ -1,8 +1,8 @@
 <h1>
-  Projects
+  My Projects
   <%= link_to "Create Project", new_project_path, :class => 'btn btn-primary pull-right' %>
 </h1>
-
+<hr>
 <% if @projects == nil %>
   You have no projects to display.
 <% else %>
@@ -13,22 +13,52 @@
           <h3>Name</h3>
         </th>
         <th>
+          <h3>Members</h3>
+        </th>
+        <th>
           <h3>Tasks</h3>
         </th>
       </tr>
     </thead>
     <tbody>
 
-     <% @projects.each do |project| %>
+      <% @projects.each do |project| %>
         <tr>
           <td>
             <%= link_to project.name, project_path(project) %>
           </td>
           <td>
+            <%= link_to project.memberships.count, project_memberships_path(project)%>
+          </td>
+          <td>
             <%= link_to project.tasks.count, project_tasks_path(project) %>
           </td>
         </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if false%>
+<% else %>
+  <h1>Pivotal Tracker Projects</h1>
+  <hr>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <h3>Name</h3>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+            <% @tracker_projects.each do |project| %>
+        <tr>
+          <td>
+              <%= project[:name] %>
+          </td>
+        </tr>
+            <% end %>
       </tbody>
-    <% end %>
-  <% end %>
-</table>
+    </table>
+<% end %>

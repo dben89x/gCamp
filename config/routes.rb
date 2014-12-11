@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
   resources :users
 
-  root "home#index"
-  get '/about' => 'about#index', as: :about
-  get '/terms' => 'terms#index', as: :terms
-  get '/faq' => 'faq#index', as: :faq
+  root "pages#home"
+  get '/about' => 'pages#about'
+  get '/terms' => 'pages#terms'
+  get '/faq' => 'pages#faq'
   post '/comments' => 'comments#create'
 
   get '/signin' => 'authenticates#signin'

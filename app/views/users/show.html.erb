@@ -12,8 +12,13 @@
   <dt>Last Name:</dt>
   <dd><%= @user.last_name %></dd>
 
-  <% if current_user == @user %>
+  <% if fellow_member(@user) %>
     <dt>E-Mail:</dt>
-    <dd><%= mail_to(@user.email) %></dd><br>
+    <dd><%= mail_to(@user.email) %></dd>
+  <% end %>
+
+  <dt>Pivotal Tracker Token:</dt>
+  <% if @user.tracker_token %>
+    <dd><%= @user.tracker_token[0..3] + '*' * (@user.tracker_token.length - 4) %></dd>
   <% end %>
 </dl>

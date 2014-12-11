@@ -1,20 +1,18 @@
 <%= form_for @project do |f| %>
+  <div class='row'>
+    <div class='col-md-6'>
 
-  <% if @project.errors.any? %>
-    <% @project.errors.full_messages.each do |message| %>
-      <div class ="error">
-        <%= message %>
+    <%= render '/errors.html.erb', model: @project %>
+
+      <div class = "form-horizontal" role="form">
+
+      <%= f.label :name%>
+      <%= f.text_field :name, class: 'form-control', :autofocus => true %><br>
+
+      <%= f.submit class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', projects_path, class: 'btn btn-default' %>
+
       </div>
-    <% end %>
-    <br>
-  <% end %>
-
-  <div class = "form-horizontal" role="form">
-
-    <%= f.label :name%>
-    <%= f.text_field :name, class: 'form-control', :autofocus => true %><br>
-
-    <%= f.submit class: 'btn btn-primary' %>
-
+    </div>
   </div>
 <% end %>

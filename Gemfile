@@ -5,6 +5,7 @@ group :production do
 end
 gem 'faker'
 gem "pg"
+gem 'faraday'
 
 gem 'haml', '~> 4.0.5'
 gem 'bootstrap-sass', '~> 3.2.0'

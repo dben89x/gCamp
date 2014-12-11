@@ -2,15 +2,18 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :destroy, :update]
 
   def index
-    if current_user.admin
-      @projects = Project.all
-    else
-      user_projects = []
-      current_user.memberships.each do |m|
-        user_projects.push m.project_id
-      end
-      @projects = Project.where(id: user_projects)
-    end
+    # if current_user.admin
+    #   @projects = Project.all
+    # else
+    #   user_projects = []
+    #   current_user.memberships.each do |m|
+    #     user_projects.push m.project_id
+    #   end
+    #   @projects = Project.where(id: user_projects)
+    # end
+    @projects = Project.all
+    tracker_api = TrackerAPI.new
+    @tracker_projects = tracker_api.get_tracker_projects(current_user.tracker_token)
   end
 
   def show
@@ -39,7 +42,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    validate(@project)
     if @project.update(project_params)
       redirect_to project_path(params[:id]), notice: 'Project was successfully updated'
     else
@@ -48,7 +50,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    validate(@project)
     @project.destroy
     redirect_to projects_path, notice: 'Project was successfully destroyed'
   end
@@ -60,7 +61,5 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name)
   end
-
-
 
 end

@@ -27,18 +27,38 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    if @membership.update(membership_params)
-      redirect_to project_memberships_path(@project, @membership), notice:
-        "#{@membership.user.full_name} was updated successfully to #{@membership.role}."
+    if check_for_owner
+      if @membership.update(membership_params)
+        redirect_to project_memberships_path(@project, @membership), notice:
+          "#{@membership.user.full_name} was updated successfully to #{@membership.role}."
+      else
+        render :index
+      end
     else
-      render :index
+      redirect_to project_memberships_path(@project), notice:
+      "Must have at least one owner for the project."
     end
   end
 
   def destroy
-    @membership.destroy
-    redirect_to project_memberships_path(@project), notice:
-      "#{@membership.user.full_name} was removed successfully."
+    if check_for_owner
+      @membership.destroy
+      redirect_to project_memberships_path(@project), notice:
+        "#{@membership.user.full_name} was removed successfully."
+    else
+      redirect_to project_memberships_path(@project), notice:
+        "Cannot delete last owner of project."
+    end
+  end
+
+  def check_for_owner
+    has_owner = false
+    @project.memberships.each do |member|
+      if member.role == 'Owner' and member.id != @membership.id
+        has_owner = true
+      end
+    end
+    has_owner
   end
 
   def membership_params

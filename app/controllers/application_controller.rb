@@ -10,16 +10,21 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  before_action :authorize
+  before_action :ensure_logged_in
 
   class AccessDenied < StandardError
   end
+  rescue_from AccessDenied, with: :record_not_found
 
   private
 
-  def authorize
+  def ensure_logged_in
     unless current_user
       redirect_to signin_path, notice: 'You must be logged in to see this page'
     end
+  end
+
+  def record_not_found
+    render "public/404", status: 404, layout: false
   end
 end
