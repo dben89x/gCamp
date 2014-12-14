@@ -1,0 +1,44 @@
+
+<h1>
+  Stories for <%= link_to @current_project[:name],
+  "https://www.pivotaltracker.com/n/projects/#{@current_project[:id]}",
+  target: "_blank" %>
+</h1>
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>
+        Story
+      </th>
+      <th>
+        Estimate
+      </th>
+      <th>
+        Labels
+      </th>
+      <th>
+        Current State
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tracker_stories.each do |story| %>
+      <tr>
+        <td>
+          <%= link_to story[:name],
+            "https://www.pivotaltracker.com/n/projects/#{params[:format]}/stories/#{story[:id]}",
+            target: "_blank" %>
+        </td>
+        <td>
+          <%= story[:estimate] %>
+        </td>
+        <td>
+          <%= story[:labels].map {|lab| lab[:name]}.join(", ") %>
+        </td>
+        <td>
+          <%= story[:current_state] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -39,8 +39,7 @@
   </table>
 <% end %>
 
-<% if false%>
-<% else %>
+<% if current_user.tracker_token%>
   <h1>Pivotal Tracker Projects</h1>
   <hr>
     <table>
@@ -52,13 +51,13 @@
         </tr>
       </thead>
       <tbody>
-            <% @tracker_projects.each do |project| %>
-        <tr>
-          <td>
-              <%= project[:name] %>
-          </td>
-        </tr>
-            <% end %>
+        <% @tracker_projects.each do |project| %>
+          <tr>
+            <td>
+              <%= link_to project[:name], tracker_stories_path(project[:id]) %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
 <% end %>

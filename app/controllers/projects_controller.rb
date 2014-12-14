@@ -2,18 +2,24 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :destroy, :update]
 
   def index
-    # if current_user.admin
-    #   @projects = Project.all
-    # else
-    #   user_projects = []
-    #   current_user.memberships.each do |m|
-    #     user_projects.push m.project_id
-    #   end
-    #   @projects = Project.where(id: user_projects)
-    # end
-    @projects = Project.all
+    if current_user.admin
+      @projects = Project.all
+    else
+      user_projects = []
+      current_user.memberships.each do |m|
+        user_projects.push m.project_id
+      end
+      @projects = Project.where(id: user_projects)
+    end
     tracker_api = TrackerAPI.new
-    @tracker_projects = tracker_api.get_tracker_projects(current_user.tracker_token)
+    @tracker_projects = tracker_api.get_projects(current_user.tracker_token)
+  end
+
+  def tracker_stories
+    tracker_api = TrackerAPI.new
+    @tracker_stories = tracker_api.get_stories(current_user.tracker_token, params[:format])
+    @tracker_projects = tracker_api.get_projects(current_user.tracker_token)
+    @current_project = @tracker_projects.find {|proj| proj[:id].to_s == params[:format]}
   end
 
   def show

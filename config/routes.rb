@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :tasks
     resources :memberships
   end
+  post '/comments' => 'comments#create'
+  get '/tracker_stories' => 'projects#tracker_stories'
 
   resources :users
 
@@ -11,7 +13,6 @@ Rails.application.routes.draw do
   get '/about' => 'pages#about'
   get '/terms' => 'pages#terms'
   get '/faq' => 'pages#faq'
-  post '/comments' => 'comments#create'
 
   get '/signin' => 'authenticates#signin'
   post '/signin' => 'authenticates#create'
