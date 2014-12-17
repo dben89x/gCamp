@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Gcamp</title>
+    <title><%= content_for(:title) or "gCamp" %></title>
     <%= stylesheet_link_tag 'application'%>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "application" %>
@@ -26,7 +26,11 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <% if current_user %>
+                <% if current_user.admin %>
+                  <% Project.all.each do |project| %>
+                    <li><a href="#"><%= link_to project.name, project_path(project) %></a></li>
+                  <% end %>
+                <% elsif current_user %>
                   <% current_user.memberships.each do |membership|%>
                     <li><a href="#"><%= link_to membership.project.name, project_path(membership.project) %></a></li>
                   <% end %>

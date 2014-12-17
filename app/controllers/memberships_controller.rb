@@ -1,14 +1,7 @@
 class MembershipsController < ApplicationController
 
-  before_action do
-    @project = Project.find(params[:project_id])
-  end
-
-  def set_membership
-    @membership = @project.memberships.find(params[:id])
-  end
-
-  before_action :set_membership, only: [:update, :destroy]
+  before_action {@project = Project.find(params[:project_id])}
+  before_action :set_membership, :check_for_owner, only: [:update, :destroy]
 
   def index
     @memberships = @project.memberships
@@ -27,30 +20,22 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    if check_for_owner
-      if @membership.update(membership_params)
-        redirect_to project_memberships_path(@project, @membership), notice:
-          "#{@membership.user.full_name} was updated successfully to #{@membership.role}."
-      else
-        render :index
-      end
+    if @membership.update(membership_params)
+      redirect_to project_memberships_path(@project, @membership), notice:
+        "#{@membership.user.full_name} was updated successfully to #{@membership.role}."
     else
-      redirect_to project_memberships_path(@project), notice:
-      "Must have at least one owner for the project."
+      render :index
     end
   end
 
   def destroy
-    if check_for_owner
-      @membership.destroy
-      redirect_to project_memberships_path(@project), notice:
-        "#{@membership.user.full_name} was removed successfully."
-    else
-      redirect_to project_memberships_path(@project), notice:
-        "Cannot delete last owner of project."
-    end
+    @membership.destroy
+    redirect_to project_memberships_path(@project), notice:
+      "#{@membership.user.full_name} was removed successfully."
   end
 
+  private
+  
   def check_for_owner
     has_owner = false
     @project.memberships.each do |member|
@@ -58,11 +43,18 @@ class MembershipsController < ApplicationController
         has_owner = true
       end
     end
-    has_owner
+    unless has_owner
+      redirect_to project_memberships_path(@project)
+      flash[:alert] = "Cannot delete last owner of project."
+    end
   end
 
   def membership_params
     params.require(:membership).permit(:project_id, :user_id, :role)
+  end
+
+  def set_membership
+    @membership = @project.memberships.find(params[:id])
   end
 
 end

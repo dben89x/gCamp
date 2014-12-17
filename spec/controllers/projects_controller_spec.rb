@@ -29,15 +29,17 @@ describe ProjectsController do
   end
 
   describe '#edit' do
-
+    get :edit
+    expect(response).to render_template("edit")
   end
 
   describe '#new' do
-
+    get :new
+    expect(response).to render_template("new")
   end
 
   describe '#create' do
-
+    
   end
 
   describe '#update' do

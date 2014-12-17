@@ -1,8 +1,7 @@
-<h1>
-  My Projects
-  <%= link_to "Create Project", new_project_path, :class => 'btn btn-primary pull-right' %>
-</h1>
-<hr>
+<%= page_header "Projects" do%>
+  <%= link_to 'New Project', new_project_path, class:"btn btn-primary" %>
+<% end %>
+
 <% if @projects == nil %>
   You have no projects to display.
 <% else %>
@@ -40,8 +39,7 @@
 <% end %>
 
 <% if current_user.tracker_token%>
-  <h1>Pivotal Tracker Projects</h1>
-  <hr>
+  <%= page_header "Pivotal Tracker Projects" %>
     <table>
       <thead>
         <tr>

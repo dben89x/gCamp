@@ -7,7 +7,8 @@ feature 'Users' do
       first_name: 'John',
       last_name: 'Smith',
       email: 'j@s.com',
-      password: 'js'
+      password: 'js',
+      admin: true
     )
   end
 
@@ -72,7 +73,7 @@ feature 'Users' do
     visit users_path
 
     click_on "Edit", match: :first
-    click_on "Delete User"
+    click_on "Delete"
     expect(page).to have_content("User was successfully deleted")
   end
 

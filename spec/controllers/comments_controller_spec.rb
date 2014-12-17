@@ -1,5 +1,7 @@
 require 'rails_helper'
 
-describe ProjectsController do
-  
+describe CommentsController do
+  it '' do
+    
+  end
 end

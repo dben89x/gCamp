@@ -1,7 +1,5 @@
 <%= form_for(model, url: path) do |f| %>
-
-  <h1> <%= title %> </h1>
-<br><br>
+<%= page_header title%>
   <div class='row'>
     <div class='col-md-6'>
 
@@ -38,6 +36,12 @@
         <%= f.submit class: 'btn btn-submit' %>
         <%= link_to 'Cancel', users_path, class: 'btn btn-default' %>
         </dd>
+
+        <% if @edit_user %>
+          <% if current_user.admin %>
+            <%= link_to 'Delete', user_path, method: :delete, data: {confirm: "Are you sure?"} %>
+          <% end %>
+        <% end %>
     </dl>
   </div>
 </div>

@@ -5,9 +5,9 @@ feature 'Projects' do
   scenario 'User creates a project' do
 
     visit projects_path
-    click_on "Create Project"
+    click_on "Create"
     fill_in "Name", with: "Something to do"
-    click_on "Create Project"
+    click_on "Create"
     expect(page).to have_content("Something to do")
 
     click_on "Edit"

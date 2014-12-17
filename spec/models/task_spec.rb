@@ -2,9 +2,7 @@ require 'rails_helper'
 
 describe Task do
   before :all do
-    @project = Project.create!(
-      name: 'A project'
-    )
+    @project = create_project
   end
 
   it "rejects created due date earlier than today" do
@@ -32,4 +30,13 @@ describe Task do
     expect(task.errors[:due_date].present?).to eq(false)
   end
 
+  it 'deletes all comments associated with the task' do
+    user = create_user
+    task = create_task(project: @project)
+    comment = create_comment(user: user, task: task)
+    Task.delete_all
+    p task.id
+    expect(task).to eq(nil)
+    expect(comment).to eq(nil)
+  end
 end

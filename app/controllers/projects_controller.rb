@@ -11,8 +11,10 @@ class ProjectsController < ApplicationController
       end
       @projects = Project.where(id: user_projects)
     end
-    tracker_api = TrackerAPI.new
-    @tracker_projects = tracker_api.get_projects(current_user.tracker_token)
+    if current_user.tracker_token
+      tracker_api = TrackerAPI.new
+      @tracker_projects = tracker_api.get_projects(current_user.tracker_token)
+    end
   end
 
   def tracker_stories
@@ -60,6 +62,8 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: 'Project was successfully destroyed'
   end
 
+  private
+  
   def set_project
     @project = Project.find(params[:id])
   end

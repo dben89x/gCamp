@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
 <h1><%= "#{@project.name}: Manage Members" %></h1><br>
 
 <ol class="breadcrumb">

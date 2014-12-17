@@ -21,10 +21,6 @@ body{
 .dl-horizontal dt {
   overflow: visible;
 }
-// 
-// .something {
-//   width: 84%;
-// }
 
 .panel {
   p, ul {
@@ -46,15 +42,15 @@ body{
   background-size:100% 100%;
   font-size:30px;
   color:orange;
+  li{
+    padding-right:50px;
+  }
   .dropdown, .navbar-right {
     font-size:20px;
   }
   :visited, :link{
     color:orange;
   }
-}
-
-.navbar-header {
 }
 
 .gcamp-jumbo {

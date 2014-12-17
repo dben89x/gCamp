@@ -1,25 +1,23 @@
 <%= form_for [@project, @task] do |f| %>
 
-  <h1> <%= title %> </h1>
+  <%= page_header title %>
   <div class='row'>
-    <div class='col-md-6'>
-      <div class = "form-horizontal col-md-6" role="form">
-        <%= render '/errors.html.erb', model: @task %>
-        <%= f.label :description %>
-        <%= f.text_field :description, :autofocus=>true, class: "form-control", placeholder: "Task to edit" %>
-        <br><br>
+    <div class = "form-horizontal col-md-6" role="form">
+      <%= render '/errors.html.erb', model: @task %>
+      <%= f.label :description %>
+      <%= f.text_field :description, :autofocus=>true, class: "form-control", placeholder: "Task to edit" %>
+      <br><br>
 
-        <%= f.label :due_date %>
-        <%= f.date_field :due_date, class: 'form-control' %>
-        <br>
+      <%= f.label :due_date %>
+      <%= f.date_field :due_date, class: 'form-control' %>
+      <br>
 
-        <%if @edit_page%>
-          <%= f.check_box :complete %>
-          <%= f.label :complete %><br><br>
-        <%end%>
+      <%if @edit_page%>
+        <%= f.check_box :complete %>
+        <%= f.label :complete %><br><br>
+      <%end%>
 
-        <%= f.submit class: "btn btn-submit" %><br><br>
-      </div>
+      <%= f.submit class: "btn btn-submit" %><br><br>
     </div>
   </div>
 <% end %>

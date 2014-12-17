@@ -5,12 +5,10 @@
   <li class="active">Show</li>
 </ol><br>
 
-<dl class = 'dl-horizontal'>
-  <h3>
-  <dt>Description:</dt>
+<%= page_header "Description: #{@task.description}" do%>
   <%= link_to 'Edit', edit_project_task_path(@project, @task), class: 'btn btn-info pull-right' %>
-  <dd><%= @task.description %></dd>
-  </h3>
+<% end %>
+<dl class = 'dl-horizontal'>
 
   <dt>Status:</dt>
   <%if @task.complete%>
@@ -30,16 +28,18 @@
 <h3>Comments</h3>
 <% @task.comments.where(:id != nil).each do |comment| %>
   <hr>
-  <% if comment.text != nil %>
-    <div class = 'col-md-2'>
+  <div class = 'col-md-2'>
+    <% if comment.user != nil %>
       <%= link_to comment.user.full_name, user_path(comment.user) %><br>
-      <div class = 'text-muted'>
-        <%= time_ago_in_words(comment.updated_at) + " ago" %><br><br>
-      </div>
+    <% else %>
+      Deleted User<br>
+    <% end %>
+    <div class = 'text-muted'>
+      <%= time_ago_in_words(comment.updated_at) + " ago" %><br><br>
     </div>
+  </div>
 
-    <%= comment.text %><br><br><br>
-  <% end %>
+  <%= comment.text %><br><br><br>
 <% end %>
 <br><br>
 
