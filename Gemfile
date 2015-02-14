@@ -4,7 +4,7 @@ group :production do
   gem "rails_12factor"
 end
 gem 'faker'
-gem "pg"
+gem "pg", '~> 0.18.1'
 gem 'faraday'
 
 gem 'haml', '~> 4.0.5'
