@@ -3,7 +3,6 @@ class AuthenticatesController < PublicController
   def signin
     @signin = true
     render template: 'users/signin'
-    p @current_page
   end
 
   def create
