@@ -32,7 +32,11 @@
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, class: "form-control",
               placeholder: "Confirm password" %>
-          <br>
+
+          <%= f.label :tracker_token %>
+          <%= f.text_field :tracker_token, class: 'form-control',
+              placeholder: 'Tracker Token (if you have one)' %>
+              <br>
 
           <%= f.submit button, class: 'btn btn-submit' %>
         </div>
