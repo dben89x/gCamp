@@ -1,7 +1,7 @@
 <%= form_for model, url: path, html: {class: 'form-horizontal'} do |f| %>
 
   <div class = "row">
-    <div class="well col-md-4 col-md-offset-4">
+    <div class="well col-md-4 col-md-offset-4" style='text-align:center'>
 
       <div class='form-group'>
         <h2> <%= title %> </h2>
@@ -13,28 +13,22 @@
           <% end %>
         <% end %>
 
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name, :autofocus=>true, class: "form-control",
+        <br><%= f.text_field :first_name, :autofocus=>true, class: "form-control",
             placeholder: "Enter first name" %>
 
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name, class: "form-control",
+        <br><%= f.text_field :last_name, class: "form-control",
             placeholder: "Enter last name"%>
 
-        <%= f.label :email %>
-        <%= f.email_field :email, class: "form-control",
+        <br><%= f.email_field :email, class: "form-control",
             placeholder: "Enter email address" %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: "form-control",
+        <br><%= f.password_field :password, class: "form-control",
             placeholder: "Enter password" %>
 
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: "form-control",
+          <br><%= f.password_field :password_confirmation, class: "form-control",
               placeholder: "Confirm password" %>
 
-          <%= f.label :tracker_token %>
-          <%= f.text_field :tracker_token, class: 'form-control',
+          <br><%= f.text_field :tracker_token, class: 'form-control',
               placeholder: 'Tracker Token (if you have one)' %>
               <br>
 

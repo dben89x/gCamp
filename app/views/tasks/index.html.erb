@@ -2,22 +2,22 @@
   <% if valid_owner %>
     <div class = "pull-right">
       <div class='dropdown'>
-        <button class="dropdown-toggle" data-toggle="dropdown">
+        <!-- <button class="dropdown-toggle" data-toggle="dropdown">
           <span class="glyphicon glyphicon-cog"></span>
           <span class="caret"></span>
         </button>
         <ul class="dropdown dropdown-menu list-unstyled" role="menu">
           <li><a href="#"><%= link_to 'Settings', projects_path %></a></li>
           <li><a href="#"><%= link_to 'Add/Remove Members', project_memberships_path(@project) %></a></li>
-        </ul>
+        </ul> -->
 
       </div>
     </div>
   <% end %>
   <div class='pull-right'>
-    <%= link_to 'New Task', new_project_task_path, :class => "btn btn-primary pull-right" %>
+    <%= link_to 'New Task', new_project_task_path, :class => "btn btn-primary pull-right", style: 'margin-left:20px'%>
 
-    <%= link_clickable('All', project_tasks_path(filter: "all"), @thing1) %>
+    <%= link_clickable('All ', project_tasks_path(filter: "all"), @thing1) %>
     <%= link_clickable('Incomplete', project_tasks_path, @thing2 )  %>
   </div>
 <% end %>
@@ -51,11 +51,7 @@
 
       <th>
         <h4>
-          <% if @query %>
-            <%= link_to 'Due Date', "#{@uri1}&sort_by=due_date" %>
-          <% elsif !@query %>
-            <%= link_to 'Due Date', "#{@uri2}?sort_by=due_date" %>
-          <% end %>
+          Due Date
         </h4>
       </th>
 
